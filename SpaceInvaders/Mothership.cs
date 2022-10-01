@@ -9,36 +9,59 @@ namespace SpaceInvaders
 
     public class Mothership
     {
-        private PictureBox picturebox;
-        private Point position;
+        //private Image image;
         private Rectangle boundary;
-        private Rectangle border;
-        public Mothership(PictureBox picturebox, Point position,Rectangle boundary)
+        private Point position;
+        private Graphics graphics;
+        private PictureBox picturebox;
+        private List<Missile> missiles;
+
+        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles)
         {
             this.picturebox = picturebox;
-            this.position = position;
             this.boundary = boundary;
-            border = new Rectangle(position.X, position.Y, 64, 64);
+            this.position = position;
+            this.graphics = graphics;
+            this.missiles = missiles;
         }
 
 
-        public void Move(int dir)
+        //public void Move(int dir)
+        //{
+
+        //        picturebox.Left += dir*10;
+
+        //    if(picturebox.Left < boundary.Left)
+        //    {
+        //        picturebox.Left = boundary.Left;
+        //    }
+        //    else if(picturebox.Right > boundary.Right)
+        //    {
+        //        picturebox.Left = boundary.Right - 64;
+        //    }
+
+
+
+        //}
+        public void Move(int mouse)
         {
-       
-                picturebox.Left += dir*10;
-
-            if(picturebox.Left < boundary.Left)
-            {
-                picturebox.Left = boundary.Left;
-            }
-            else if(picturebox.Right > boundary.Right)
-            {
-                picturebox.Left = boundary.Right - 64;
-            }
-
-
-
+            if(mouse-32 > boundary.Left && mouse+32 < boundary.Right)
+                picturebox.Left = mouse - 32;
         }
+
+        //public void Draw()
+        //{
+       
+        //    graphics.DrawImage(image, position.X, position.Y, 64, 64);
+        //    //graphics.DrawRectangle(Pens.Red, position.X, position.Y, 25, 25);
+
+            
+        //}
+        public void Shoot()
+        {
+            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 4, graphics,missiles));
+        }
+
         
     }
 }
