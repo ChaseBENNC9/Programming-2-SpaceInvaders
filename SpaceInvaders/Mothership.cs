@@ -59,7 +59,7 @@ namespace SpaceInvaders
         //}
         public void Shoot()
         {
-            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 4, graphics,missiles));
+            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 8, graphics,missiles));
         }
 
         

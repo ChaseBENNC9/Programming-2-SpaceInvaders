@@ -39,7 +39,7 @@ namespace SpaceInvaders
                     if (index < 40)
                     {
                         index++;
-                        enemies.Add(new Enemy(new Point(x, y), bufferGraphics, Properties.Resources.T0));
+                        enemies.Add(new Enemy(new Point(x, y), bufferGraphics, Properties.Resources.enemy_ship));
                         if(index%4 == 3)
                         {
                             enemies[index].CanShoot = true;
@@ -103,7 +103,7 @@ namespace SpaceInvaders
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             //mothership.Draw();
             enemiesLeft = enemies[0].Position.X - 5;
-            enemiesRight = enemies[36].Position.X + 30;
+            enemiesRight = enemies[enemies.Count-1].Position.X + 30;
 
             foreach(Missile missile in missiles.ToList())
             {
@@ -129,14 +129,14 @@ namespace SpaceInvaders
 
 
                 }
-                if(i < enemies.Count-1)
-                {
-                    if (enemies[i + 1].Destroyed == true)
-                    {
-                        enemies[i].CanShoot = true;
-                    }
-                    i++;
-                }
+                //if(i < 36)
+                //{
+                //    if (enemies[i + 1].Destroyed == true)
+                //    {
+                //        enemies[i].CanShoot = true;
+                //    }
+                //    i++;
+                //}
                 
                 enemy.Move(enemyspeed);
                 foreach (Missile missile in missiles.ToList())
@@ -145,7 +145,7 @@ namespace SpaceInvaders
                     {
                         
                         missile.Destroy();
-                        enemy.Destroy();
+                        enemies.Remove(enemy);
                     }
 
                 }
