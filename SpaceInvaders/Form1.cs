@@ -120,15 +120,13 @@ namespace SpaceInvaders
                 }
                 enemyspeed = -enemyspeed;
             }
-            int i = 0;
             foreach(Enemy enemy in enemies.ToList())
             {
-                if(enemy.Destroyed == false)
-                {
+  
                     enemy.Draw();
 
 
-                }
+
                 //if(i < 36)
                 //{
                 //    if (enemies[i + 1].Destroyed == true)
@@ -137,7 +135,23 @@ namespace SpaceInvaders
                 //    }
                 //    i++;
                 //}
-                
+
+                int test_Y = enemy.Position.Y; //test the y position adding the gap between each enemy
+                bool test_y_empty = true; //Is the test_y position free?
+                foreach(Enemy test in enemies) //loop through enemies again and test if any positions match the test_y
+                {
+                    if((test.Position.Y == test_Y +50 || test.Position.Y == test_Y + 100 || test.Position.Y == test_Y + 150)  && test.Position.X == enemy.Position.X)
+                    {
+                        test_y_empty = false;
+
+
+                    }
+
+                }
+                if (test_y_empty)
+                {
+                    enemy.CanShoot = true;
+                }
                 enemy.Move(enemyspeed);
                 foreach (Missile missile in missiles.ToList())
                 {
@@ -153,7 +167,6 @@ namespace SpaceInvaders
 
             graphics.DrawImage(bufferImage, 0, 0);
 
-            textBox1.Text = canShoot.ToString();
         }
     }
     
