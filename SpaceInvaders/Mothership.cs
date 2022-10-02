@@ -25,6 +25,8 @@ namespace SpaceInvaders
             this.missiles = missiles;
         }
 
+        public PictureBox Picturebox { get => picturebox; set => picturebox = value; }
+
 
         //public void Move(int dir)
         //{
@@ -46,20 +48,24 @@ namespace SpaceInvaders
         public void Move(int mouse)
         {
             if(mouse-32 > boundary.Left && mouse+32 < boundary.Right)
+            {
                 picturebox.Left = mouse - 32;
+            }
+
+
         }
 
         //public void Draw()
         //{
-       
+
         //    graphics.DrawImage(image, position.X, position.Y, 64, 64);
         //    //graphics.DrawRectangle(Pens.Red, position.X, position.Y, 25, 25);
 
-            
+
         //}
         public void Shoot()
         {
-            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 8, graphics,missiles));
+            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 32, graphics,missiles));
         }
 
         

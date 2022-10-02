@@ -9,9 +9,11 @@ namespace SpaceInvaders
         private List<Enemy> enemies;
         private List<Missile> missiles;
 
-        private int enemyspeed = 8;
-        int enemiesLeft, enemiesRight;
+        private int enemyspeed;
+        int enemiesLeft, enemiesRight,enemiesBottom;
         private Mothership mothership;
+
+
 
         public Form1()
         {
@@ -28,6 +30,8 @@ namespace SpaceInvaders
             mothership = new Mothership(pictureBox1,ClientRectangle,new Point(ClientSize.Width/2,ClientSize.Height-150),bufferGraphics,missiles);
             enemiesLeft = 0;
             enemiesRight = 0;
+            enemiesBottom = 0;
+            enemyspeed = 5;
             timer1.Enabled = true;
             
             //Grid Layout
@@ -39,11 +43,11 @@ namespace SpaceInvaders
                     if (index < 40)
                     {
                         index++;
-                        enemies.Add(new Enemy(new Point(x, y), bufferGraphics, Properties.Resources.enemy_ship));
-                        if(index%4 == 3)
-                        {
-                            enemies[index].CanShoot = true;
-                        }
+                        enemies.Add(new Enemy(new Point(x, y),enemyspeed, bufferGraphics, Properties.Resources.enemy_ship));
+                        //if(index%4 == 3)
+                        //{
+                        //    enemies[index].CanShoot = true;
+                        //}
                     
                     }
 
@@ -102,10 +106,44 @@ namespace SpaceInvaders
         {
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             //mothership.Draw();
-            enemiesLeft = enemies[0].Position.X - 5;
-            enemiesRight = enemies[enemies.Count-1].Position.X + 30;
+            enemiesLeft = enemies[0].Position.X - enemyspeed;
+            enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
+            enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
+            if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top)
+            {
+                timer1.Enabled = false;
 
-            foreach(Missile missile in missiles.ToList())
+                MessageBox.Show("Game Over +");
+
+            }
+
+            if (enemies.Count <= 40 && enemies.Count > 30)
+            {
+                enemyspeed = 24;
+            }
+            else if (enemies.Count <= 30 && enemies.Count > 20)
+            {
+                enemyspeed = 6;
+            }
+            else if (enemies.Count <= 20 && enemies.Count > 10)
+            {
+                enemyspeed = 8;
+            }
+            else if (enemies.Count <= 10 && enemies.Count > 5)
+            {
+                enemyspeed = 9;
+            }
+            else if (enemies.Count <= 5 && enemies.Count > 1)
+            {
+                enemyspeed = 10;
+            }
+            else if (enemies.Count == 1)
+            {
+                enemyspeed = 15;
+            }
+            textBox1.Text = mothership.Picturebox.Top.ToString();
+            textBox2.Text = enemiesBottom.ToString();
+            foreach (Missile missile in missiles.ToList())
             {
 
                 missile.Draw();
@@ -117,13 +155,15 @@ namespace SpaceInvaders
                 foreach(Enemy enemy in enemies)
                 {
                     enemy.ShiftLevel();
+                    enemy.Direction = -enemy.Direction;
                 }
-                enemyspeed = -enemyspeed;
+                 
             }
             foreach(Enemy enemy in enemies.ToList())
             {
-  
-                    enemy.Draw();
+                enemy.Velocity = enemyspeed;
+                    
+                enemy.Draw();
 
 
 
@@ -138,7 +178,7 @@ namespace SpaceInvaders
 
                 int test_Y = enemy.Position.Y; //test the y position adding the gap between each enemy
                 bool test_y_empty = true; //Is the test_y position free?
-                foreach(Enemy test in enemies) //loop through enemies again and test if any positions match the test_y
+                foreach(Enemy test in enemies) //loop through enemies again and test if the column is free, the offset counts 3 forwards
                 {
                     if((test.Position.Y == test_Y +50 || test.Position.Y == test_Y + 100 || test.Position.Y == test_Y + 150)  && test.Position.X == enemy.Position.X)
                     {
@@ -152,7 +192,7 @@ namespace SpaceInvaders
                 {
                     enemy.CanShoot = true;
                 }
-                enemy.Move(enemyspeed);
+                enemy.Move();
                 foreach (Missile missile in missiles.ToList())
                 {
                     if (missile.Collider.IntersectsWith(enemy.Collider) && enemy.Destroyed == false)

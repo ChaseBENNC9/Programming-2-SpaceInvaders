@@ -6,20 +6,26 @@
     private Rectangle collider;
     private bool destroyed;
     private bool canShoot;
-    public Enemy(Point position, Graphics graphics,Image image)
+    private int velocity;
+    private int direction;
+    public Enemy(Point position,int velocity, Graphics graphics,Image image)
     {
         this.position = position;
         this.graphics = graphics;
+        this.velocity = velocity;
         this.image = image;
         collider = new Rectangle(position.X, position.Y, 25, 25);
         destroyed = false;
         canShoot = false;
+        direction = 1;
     }
 
     public Point Position { get => position; set => position = value; }
     public Rectangle Collider { get => collider; set => collider = value; }
     public bool Destroyed { get => destroyed; set => destroyed = value; }
     public bool CanShoot { get => canShoot; set => canShoot = value; }
+    public int Velocity { get => velocity; set => velocity = value; }
+    public int Direction { get => direction; set => direction = value; }
 
     public void Draw()
     {
@@ -37,11 +43,11 @@
 
     }
 
-    public void Move(int speed)
+    public void Move()
     {
         collider.X = position.X;
         collider.Y = position.Y;
-        position.X += speed;
+        position.X += direction*velocity;
     }
 
     public void ShiftLevel()
