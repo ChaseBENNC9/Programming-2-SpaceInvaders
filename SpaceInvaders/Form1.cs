@@ -7,7 +7,10 @@ namespace SpaceInvaders
         private Graphics graphics;
         private Graphics bufferGraphics;
         private List<Enemy> enemies;
+        private List<Missile> bombs;
+
         private List<Missile> missiles;
+        private Random rand;
 
         private int enemyspeed;
         int enemiesLeft, enemiesRight,enemiesBottom;
@@ -18,6 +21,8 @@ namespace SpaceInvaders
         public Form1()
         {
             InitializeComponent();
+            rand = new Random();
+            bombs = new List<Missile>();
             missiles = new List<Missile>();
             canShoot = true;
             graphics = CreateGraphics();
@@ -27,7 +32,7 @@ namespace SpaceInvaders
             enemies = new List<Enemy>();
             
 
-            mothership = new Mothership(pictureBox1,ClientRectangle,new Point(ClientSize.Width/2,ClientSize.Height-150),bufferGraphics,missiles);
+            mothership = new Mothership(pictureBox1,ClientRectangle,new Point(ClientSize.Width/2,ClientSize.Height-150),bufferGraphics,missiles,rand);
             enemiesLeft = 0;
             enemiesRight = 0;
             enemiesBottom = 0;
@@ -43,12 +48,12 @@ namespace SpaceInvaders
                     if (index < 40)
                     {
                         index++;
-                        enemies.Add(new Enemy(new Point(x, y),enemyspeed, bufferGraphics, Properties.Resources.enemy_ship));
-                        //if(index%4 == 3)
-                        //{
-                        //    enemies[index].CanShoot = true;
-                        //}
-                    
+                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, bufferGraphics, Properties.Resources.enemy_ship,bombs,rand));
+                        if (index % 4 == 3)
+                        {
+                            enemies[index].CanShoot = true;
+                        }
+
                     }
 
 
@@ -105,21 +110,20 @@ namespace SpaceInvaders
         private void timer1_Tick(object sender, EventArgs e)
         {
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
-            //mothership.Draw();
             enemiesLeft = enemies[0].Position.X - enemyspeed;
             enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
             enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
-            if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top)
-            {
-                timer1.Enabled = false;
+            //if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top)
+            //{
+            //    timer1.Enabled = false;
 
-                MessageBox.Show("Game Over +");
+            //    MessageBox.Show("Game Over +");
 
-            }
+            //}
 
             if (enemies.Count <= 40 && enemies.Count > 30)
             {
-                enemyspeed = 24;
+                enemyspeed = 4;
             }
             else if (enemies.Count <= 30 && enemies.Count > 20)
             {
@@ -141,14 +145,19 @@ namespace SpaceInvaders
             {
                 enemyspeed = 15;
             }
-            textBox1.Text = mothership.Picturebox.Top.ToString();
-            textBox2.Text = enemiesBottom.ToString();
+           textBox1.Text = mothership.Picturebox.Top.ToString();
+           textBox2.Text = enemiesBottom.ToString();
             foreach (Missile missile in missiles.ToList())
             {
-
+                textBox1.Text = missile.Life.ToString();
                 missile.Draw();
                 missile.Move();
 
+            }
+            foreach(Missile bomb in bombs.ToList())
+            {
+                bomb.Draw();
+                bomb.Move();
             }
              if(enemiesRight > ClientRectangle.Right || enemiesLeft < ClientRectangle.Left)
             {
@@ -192,9 +201,19 @@ namespace SpaceInvaders
                 {
                     enemy.CanShoot = true;
                 }
+
                 enemy.Move();
+                if (enemy.CanShoot)
+                {
+                    if(enemy.ShootNum == 99)
+                    {
+                        enemy.Shoot();
+                    }
+                    textBox1.Text = bombs.Count.ToString();
+                }
                 foreach (Missile missile in missiles.ToList())
                 {
+                    
                     if (missile.Collider.IntersectsWith(enemy.Collider) && enemy.Destroyed == false)
                     {
                         

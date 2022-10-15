@@ -15,14 +15,16 @@ namespace SpaceInvaders
         private Graphics graphics;
         private PictureBox picturebox;
         private List<Missile> missiles;
+        private Random rand;
 
-        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles)
+        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles,Random rand)
         {
             this.picturebox = picturebox;
             this.boundary = boundary;
             this.position = position;
             this.graphics = graphics;
             this.missiles = missiles;
+            this.rand = rand;
         }
 
         public PictureBox Picturebox { get => picturebox; set => picturebox = value; }
@@ -65,7 +67,7 @@ namespace SpaceInvaders
         //}
         public void Shoot()
         {
-            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 32, graphics,missiles));
+            missiles.Add(new Missile(new Point(picturebox.Left + 32, picturebox.Top), 32, graphics,missiles,rand));
         }
 
         
