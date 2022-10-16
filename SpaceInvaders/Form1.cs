@@ -1,15 +1,18 @@
 namespace SpaceInvaders
 {
     public partial class Form1 : Form
-    {
+    {//All functionality will be moved to the Controller class//
         private Bitmap bufferImage;
         private bool canShoot;
+        private bool gameFinished;
         private Graphics graphics;
         private Graphics bufferGraphics;
-        private List<Enemy> enemies;
+        //All of theese will eventually become part of a Fleet Object
+        private List<Enemy> enemies; //2D array? or keep as a list? new var[4,10] (r,c)
         private List<Missile> bombs;
-
         private List<Missile> missiles;
+        /**********************************/
+        //Fleet has different fields for each // 3 constructors?
         private Random rand;
 
         private int enemyspeed;
@@ -25,6 +28,7 @@ namespace SpaceInvaders
             bombs = new List<Missile>();
             missiles = new List<Missile>();
             canShoot = true;
+            gameFinished = false;
             graphics = CreateGraphics();
             int index = -1;
             bufferImage = new Bitmap(Width, Height);
@@ -75,51 +79,79 @@ namespace SpaceInvaders
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            ////MessageBox.Show($"{e.KeyCode}");
-            //if(e.KeyCode == Keys.Left)
-            //{
-            //    mothership.Move(-1);
+            //MessageBox.Show($"{e.KeyCode}");
+            if (e.KeyCode == Keys.NumPad5)
+            {
+                enemies.Clear();
 
-            //}
-            //else if(e.KeyCode == Keys.Right)
-            //{
-            //    mothership.Move(1);
-
-            //}
+            }
+           
 
         }
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
+            if (timer1.Enabled)
+            {
                 mothership.Move(e.X);
-            
+
+            }
+
+
         }
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
 
 
-            if(missiles.Count < 10 && canShoot)
+            if(missiles.Count < 15 && canShoot)
             {
                 mothership.Shoot();
             }
-            canShoot = !canShoot;
+            //canShoot = !canShoot;
 
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
-            enemiesLeft = enemies[0].Position.X - enemyspeed;
-            enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
-            enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
-            //if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top)
-            //{
-            //    timer1.Enabled = false;
+            if (enemies.Count > 0)
+            {
+                enemiesLeft = enemies[0].Position.X - enemyspeed;
+                enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
+                enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
+            }
 
-            //    MessageBox.Show("Game Over +");
 
-            //}
+            foreach (Missile bomb in bombs.ToList())
+            {
+                if(bomb.Position.Y > ClientSize.Height)
+                {
+                    bomb.Destroy();
+                }
+                if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
+                {
+                    timer1.Enabled = false;
+                    
+                }
+
+            }
+
+
+
+
+
+
+
+            if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top || mothership.Picturebox.Visible == false)
+            {
+                
+                GameOver();
+
+               // MessageBox.Show("Game Over +");
+
+            }
 
             if (enemies.Count <= 40 && enemies.Count > 30)
             {
@@ -127,6 +159,8 @@ namespace SpaceInvaders
             }
             else if (enemies.Count <= 30 && enemies.Count > 20)
             {
+
+                
                 enemyspeed = 6;
             }
             else if (enemies.Count <= 20 && enemies.Count > 10)
@@ -145,11 +179,10 @@ namespace SpaceInvaders
             {
                 enemyspeed = 15;
             }
-           textBox1.Text = mothership.Picturebox.Top.ToString();
-           textBox2.Text = enemiesBottom.ToString();
+           //textBox1.Text = mothership.Picturebox.Top.ToString();
+          // textBox2.Text = enemiesBottom.ToString();
             foreach (Missile missile in missiles.ToList())
             {
-                textBox1.Text = missile.Life.ToString();
                 missile.Draw();
                 missile.Move();
 
@@ -159,6 +192,7 @@ namespace SpaceInvaders
                 bomb.Draw();
                 bomb.Move();
             }
+          //  textBox1.Text = bombs.Count.ToString();
              if(enemiesRight > ClientRectangle.Right || enemiesLeft < ClientRectangle.Left)
             {
                 foreach(Enemy enemy in enemies)
@@ -209,7 +243,7 @@ namespace SpaceInvaders
                     {
                         enemy.Shoot();
                     }
-                    textBox1.Text = bombs.Count.ToString();
+                   // textBox1.Text = bombs.Count.ToString();
                 }
                 foreach (Missile missile in missiles.ToList())
                 {
@@ -220,12 +254,26 @@ namespace SpaceInvaders
                         missile.Destroy();
                         enemies.Remove(enemy);
                     }
+                    
 
                 }
             }
 
+
+
             graphics.DrawImage(bufferImage, 0, 0);
 
+        }
+
+        public void GameOver()
+        {
+
+           // bombs.Clear();
+            //missiles.Clear();
+
+            timer1.Enabled = false;
+            //gameFinished = true;
+            textBox1.Text = "Game Over";
         }
     }
     

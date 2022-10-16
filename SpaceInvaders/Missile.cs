@@ -34,14 +34,14 @@ namespace SpaceInvaders
 
         public void Draw()
         {
-            graphics.FillEllipse(Brushes.White, position.X, position.Y, 8, 8);
+            graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
         }
         public void Move()
         {
             if (life > 0)
             {
                 life--;
-                if (position.Y < 0)
+                if (position.Y < 0 )
                 {
                     Destroy();
                 }
@@ -63,7 +63,9 @@ namespace SpaceInvaders
 
         public void Destroy()
         {
-           missiles.Remove(this);
+            //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
+
+            missiles.Remove(this);
         }
 
 

@@ -28,6 +28,7 @@ namespace SpaceInvaders
         }
 
         public PictureBox Picturebox { get => picturebox; set => picturebox = value; }
+        public Point Position { get => position; set => position = value; }
 
 
         //public void Move(int dir)
