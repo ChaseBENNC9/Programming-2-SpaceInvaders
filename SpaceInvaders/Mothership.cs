@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
-
+    //This is the Mothership that the player will control. It follows the cursor on the X-axis and will fire a missile when the mouse is clicked
     public class Mothership
     {
         //private Image image;

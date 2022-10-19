@@ -4,7 +4,6 @@ namespace SpaceInvaders
     {//All functionality will be moved to the Controller class//
         private Bitmap bufferImage;
         private bool canShoot;
-        private bool gameFinished;
         private Graphics graphics;
         private Graphics bufferGraphics;
         //All of theese will eventually become part of a Fleet Object
@@ -28,7 +27,6 @@ namespace SpaceInvaders
             bombs = new List<Missile>();
             missiles = new List<Missile>();
             canShoot = true;
-            gameFinished = false;
             graphics = CreateGraphics();
             int index = -1;
             bufferImage = new Bitmap(Width, Height);
@@ -53,7 +51,7 @@ namespace SpaceInvaders
                     {
                         index++;
                         enemies.Add(new Enemy(new Point(x, y), enemyspeed, bufferGraphics, Properties.Resources.enemy_ship,bombs,rand));
-                        if (index % 4 == 3)
+                        if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
                         {
                             enemies[index].CanShoot = true;
                         }
@@ -108,7 +106,7 @@ namespace SpaceInvaders
             {
                 mothership.Shoot();
             }
-            //canShoot = !canShoot;
+            canShoot = !canShoot;
 
         }
 

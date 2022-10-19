@@ -1,6 +1,7 @@
 ﻿
 namespace SpaceInvaders
 {
+    //This is the enemy, It moves in a gridlock motion and drops a Bomb at random intervals if it is active. If the enemy collides with a missile it will be destroyed
     public class Enemy
     {
         private Point position;

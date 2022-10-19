@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
+    //This is a Missile, It is created when the player clicks the mouse. It will start at the top of the Mothership in the center and will only move Up. 
+    //If it collides with an enemy or a bomb. It will be destroyed
     public class Missile
     {
         private Point position;
@@ -66,6 +68,7 @@ namespace SpaceInvaders
             //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 
             missiles.Remove(this);
+            
         }
 
 
