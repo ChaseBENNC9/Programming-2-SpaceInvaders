@@ -8,14 +8,14 @@ namespace SpaceInvaders
         private Graphics graphics;
         private Image image;
         private Rectangle collider;
-        private List<Missile> bombs;
+        private List<Bomb> bombs;
         private Random rand;
         private int shootNum;
         private bool destroyed;
         private bool canShoot;
         private int velocity;
         private int direction;
-        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Missile> bombs,Random rand)
+        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand)
         {
             this.rand = rand;
             this.position = position;
@@ -75,7 +75,7 @@ namespace SpaceInvaders
 
         public void Shoot()
         {
-            bombs.Add(new Missile(new Point(position.X+16,position.Y+32), -32, graphics, bombs, rand));
+            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand));
         }
     }
 }

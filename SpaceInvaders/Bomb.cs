@@ -6,26 +6,24 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
-    //This is a Missile, It is created when the player clicks the mouse. It will start at the top of the Mothership in the center and will only move Up. 
-    //If it collides with an enemy It will be destroyed
-    public class Missile
+    public class Bomb
     {
         private Point position;
         private int velocity;
         private Graphics graphics;
-        private List<Missile> missiles;
+        private List<Bomb> bombs;
         private Rectangle collider;
         private int life;
         private Random rand;
 
 
-        public Missile(Point position, int velocity,Graphics graphics, List<Missile> missiles,Random rand)
+        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand)
         {
             this.position = position;
             this.velocity = velocity;
             this.graphics = graphics;
-            this.missiles = missiles;
-            collider = new Rectangle(position.X,position.Y,8,8);
+            this.bombs = bombs;
+            collider = new Rectangle(position.X, position.Y, 8, 8);
             this.rand = rand;
             life = rand.Next(1, 70);
         }
@@ -36,20 +34,20 @@ namespace SpaceInvaders
 
         public void Draw()
         {
-            graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
+            graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
         }
         public void Move()
         {
             if (life > 0)
             {
                 life--;
-                if (position.Y < 0 )
+                if (position.Y < 0)
                 {
                     Destroy();
                 }
                 else
                 {
-                    position.Y -= velocity;
+                    position.Y += velocity;
                     collider.Y = position.Y;
                     collider.X = position.X;
 
@@ -60,15 +58,15 @@ namespace SpaceInvaders
             {
                 Destroy();
             }
-            
+
         }
 
         public void Destroy()
         {
             //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 
-            missiles.Remove(this);
-            
+            bombs.Remove(this);
+
         }
 
 
