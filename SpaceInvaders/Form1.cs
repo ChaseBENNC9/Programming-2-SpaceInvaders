@@ -77,17 +77,16 @@ namespace SpaceInvaders
         {
 
 
-            if (canShoot)
+            if(canShoot && controller.MissileCount() < 15)
             {
-                controller.ShootMissile();
-                
-
+                controller.FireMissile();
             }
             canShoot = !canShoot;
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
+            textBox1.Text = controller.MissileCount().ToString();
 
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             controller.RunGame();

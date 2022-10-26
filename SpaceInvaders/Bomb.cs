@@ -13,11 +13,12 @@ namespace SpaceInvaders
         private Graphics graphics;
         private List<Bomb> bombs;
         private Rectangle collider;
+        private Rectangle boundary;
         private int life;
         private Random rand;
 
 
-        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand)
+        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand,Rectangle boundary)
         {
             this.position = position;
             this.velocity = velocity;
@@ -41,7 +42,7 @@ namespace SpaceInvaders
             if (life > 0)
             {
                 life--;
-                if (position.Y < 0)
+                if (position.Y >= boundary.Height)
                 {
                     Destroy();
                 }

@@ -47,7 +47,7 @@ namespace SpaceInvaders
                     if (index < 40)
                     {
                         
-                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand));
+                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand,boundary));
                         if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
                         {
                             enemies[index].CanShoot = true;
@@ -79,12 +79,13 @@ namespace SpaceInvaders
                 bomb.Move();
             }
         }
-        public void ShootMissile()
+        public int MissileCount()
         {
-            if(missiles.Count < 15)
-            {
-                mothership.Shoot();
-            }
+            return missiles.Count;
+        }
+        public void FireMissile()
+        {
+            mothership.Shoot();
         }
 
         public void RunGame()
@@ -105,7 +106,7 @@ namespace SpaceInvaders
                 }
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
-                    gameOver = true;
+                    //gameOver = true;
                 }
 
             }
@@ -119,7 +120,7 @@ namespace SpaceInvaders
             if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top || mothership.Picturebox.Visible == false)
             {
 
-                gameOver = true;
+                //gameOver = true;
 
                 // MessageBox.Show("Game Over +");
 

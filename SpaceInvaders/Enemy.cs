@@ -15,7 +15,8 @@ namespace SpaceInvaders
         private bool canShoot;
         private int velocity;
         private int direction;
-        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand)
+        private Rectangle boundary;
+        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary)
         {
             this.rand = rand;
             this.position = position;
@@ -75,7 +76,7 @@ namespace SpaceInvaders
 
         public void Shoot()
         {
-            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand));
+            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand,boundary));
         }
     }
 }

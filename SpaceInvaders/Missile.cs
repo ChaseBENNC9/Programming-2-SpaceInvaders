@@ -25,7 +25,7 @@ namespace SpaceInvaders
             this.velocity = velocity;
             this.graphics = graphics;
             this.missiles = missiles;
-            collider = new Rectangle(position.X,position.Y,8,8);
+            collider = new Rectangle(position.X,position.Y,16,32);
             this.rand = rand;
             life = rand.Next(1, 70);
         }
@@ -36,7 +36,8 @@ namespace SpaceInvaders
 
         public void Draw()
         {
-            graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
+            //graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
+            graphics.DrawImage(Properties.Resources.missile, position.X, position.Y,16,32);
         }
         public void Move()
         {
