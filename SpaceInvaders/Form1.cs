@@ -90,7 +90,8 @@ namespace SpaceInvaders
             if (controller.GameOver == true)
             {
                 timer1.Enabled = false;
-                MessageBox.Show("Game Over");
+                //MessageBox.Show("Game Over");
+                panel3.Show();
             }
 
 
