@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
-    //This is the Mothership that the player will control. It follows the cursor on the X-axis and will fire a missile when the mouse is clicked
+    //This is the Mothership that the player will control.
+    //It follows the cursor on the X-axis and will fire a missile when the mouse is clicked
+   
     public class Mothership
     {
         //private Image image;
         private Rectangle boundary;
+        private const int WIDTH = 64;
+        private const int HEIGHT = 64;
         private Point position;
         private Graphics graphics;
         private PictureBox picturebox;
@@ -52,7 +56,7 @@ namespace SpaceInvaders
         {
             if(mouse-32 > boundary.Left && mouse+32 < boundary.Right)
             {
-                picturebox.Left = mouse - 32;
+                picturebox.Left = mouse - WIDTH/2;
             }
 
 
@@ -68,7 +72,7 @@ namespace SpaceInvaders
         //}
         public void Shoot()
         {
-            missiles.Add(new Missile(new Point(picturebox.Left + 32 - 8, picturebox.Top), 32, graphics,missiles,rand));
+            missiles.Add(new Missile(new Point(picturebox.Left + WIDTH/2 - (8), picturebox.Top), 32, graphics,missiles,rand));
         }
 
         

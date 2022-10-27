@@ -107,7 +107,7 @@ namespace SpaceInvaders
                 }
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
-                    //gameOver = true;
+                    gameOver = true;
                 }
 
             }
@@ -121,7 +121,7 @@ namespace SpaceInvaders
             if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top || mothership.Picturebox.Visible == false)
             {
 
-                //gameOver = true;
+                gameOver = true;
 
                 // MessageBox.Show("Game Over +");
 

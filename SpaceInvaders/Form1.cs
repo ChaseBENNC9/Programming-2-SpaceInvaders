@@ -22,8 +22,9 @@ namespace SpaceInvaders
         public Form1()
         {
             InitializeComponent();
+            pictureBox1.Hide();
             rand = new Random();
-
+            panel2.Hide();
             canShoot = true;
             graphics = CreateGraphics();
             bufferImage = new Bitmap(Width, Height);
@@ -32,7 +33,7 @@ namespace SpaceInvaders
             boundary = ClientRectangle;
             controller = new Controller(pictureBox1,boundary, bufferGraphics, rand);
 
-            timer1.Enabled = true;
+            timer1.Enabled = false;
             
             //Grid Layout
             //Picture Box For Player Graphics draw image for ( Missile, Enemies, Bomb) -Enemies in a List and add the missiles to an array or list to limit how many at once.
@@ -42,11 +43,7 @@ namespace SpaceInvaders
         }
 
      
-        private void button1_Click(object sender, EventArgs e)
-        {
 
-
-        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -79,12 +76,13 @@ namespace SpaceInvaders
             {
                 controller.FireMissile();
             }
-            canShoot = !canShoot;
+            //
+            //canShoot = !canShoot;
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text = controller.MissileCount().ToString();
+            //textBox1.Text = controller.MissileCount().ToString();
 
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             controller.RunGame();
@@ -107,16 +105,25 @@ namespace SpaceInvaders
 
         }
 
-        //public void GameOver()
-        //{
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Hide();
+            timer1.Enabled = true;
+            pictureBox1.Show();
+        }
 
-        //   // bombs.Clear();
-        //    //missiles.Clear();
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel2.Hide();
+        }
 
-        //    timer1.Enabled = false;
-        //    //gameFinished = true;
-        //    textBox1.Text = "Game Over";
-        //}
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panel2.Show();
+
+        }
     }
     
 }

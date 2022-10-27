@@ -71,7 +71,7 @@ namespace SpaceInvaders
 
         public void ShiftLevel()
         {
-            position.Y += 20;
+            position.Y += 10;
         }
 
         public void Destroy()

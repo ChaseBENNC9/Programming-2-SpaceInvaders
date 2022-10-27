@@ -10,6 +10,7 @@ namespace SpaceInvaders
     public class Bomb
     {
         private Point position;
+        private const int SIZE = 32;
         private int velocity;
         private Graphics graphics;
         private List<Bomb> bombs;
@@ -26,7 +27,7 @@ namespace SpaceInvaders
             this.velocity = velocity;
             this.graphics = graphics;
             this.bombs = bombs;
-            collider = new Rectangle(position.X, position.Y, 8, 8);
+            collider = new Rectangle(position.X, position.Y, SIZE, SIZE);
             this.rand = rand;
             life = rand.Next(1, 70);
         }
@@ -37,7 +38,9 @@ namespace SpaceInvaders
 
         public void Draw()
         {
-            graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
+            //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, SIZE, SIZE);
+            graphics.DrawImage(Properties.Resources.bomb1, position.X, position.Y, SIZE, SIZE);
+
         }
         public void Move()
         {
