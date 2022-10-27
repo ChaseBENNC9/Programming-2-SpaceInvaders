@@ -17,12 +17,14 @@ namespace SpaceInvaders
         private List<Missile> missiles;
         private List<Bomb> bombs;
         private bool gameOver = false;
+        private int score;
 
         private List<Enemy> enemies;
 
         private int enemiesLeft, enemiesRight, enemiesBottom, enemyspeed;
 
         public bool GameOver { get => gameOver; set => gameOver = value; }
+        public int Score { get => score; set => score = value; }
 
         public Controller(PictureBox picturebox, Rectangle boundary,Graphics graphics,Random rand)
         {
@@ -37,6 +39,7 @@ namespace SpaceInvaders
             enemiesRight = 0;
             enemiesBottom = 0;
             enemyspeed = 5;
+            score = 0;
 
 
 
@@ -209,6 +212,7 @@ namespace SpaceInvaders
 
                         missile.Destroy(); //alive = false
                         enemies.Remove(enemy);
+                        score += 50;
                     }
 
 

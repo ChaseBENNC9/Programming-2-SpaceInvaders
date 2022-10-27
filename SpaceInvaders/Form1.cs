@@ -83,7 +83,7 @@ namespace SpaceInvaders
         private void timer1_Tick(object sender, EventArgs e)
         {
             //textBox1.Text = controller.MissileCount().ToString();
-
+            toolStripTextBox1.Text = $"Score: {controller.Score}";
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             controller.RunGame();
             controller.DrawObjects();
@@ -124,6 +124,8 @@ namespace SpaceInvaders
             panel2.Show();
 
         }
+
+
     }
     
 }
