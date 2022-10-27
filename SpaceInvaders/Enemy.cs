@@ -1,7 +1,11 @@
 ﻿
 namespace SpaceInvaders
 {
-    //This is the enemy, It moves in a gridlock motion and drops a Bomb at random intervals if it is active. If the enemy collides with a missile it will be destroyed
+    //This is the enemy, It moves in a grid in a steplock motion and drops a Bomb at random intervals if it is active. 
+    //If the enemy collides with a missile it will be destroyed, If the bottom row of enemies reaches the y position of the Mothership
+    //the game will end.
+
+    //As the amount of enemies left decreases to certain ammounts the speed they move will increase at set intervals.
     public class Enemy
     {
         private Point position;
@@ -19,6 +23,7 @@ namespace SpaceInvaders
         public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary)
         {
             this.rand = rand;
+            this.boundary = boundary;
             this.position = position;
             this.graphics = graphics;
             this.velocity = velocity;

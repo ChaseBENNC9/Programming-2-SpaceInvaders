@@ -39,6 +39,7 @@ namespace SpaceInvaders
             enemyspeed = 5;
 
 
+
             int index = 0;
             for (int x = 100; x < 800; x += 75)
             {
@@ -65,7 +66,7 @@ namespace SpaceInvaders
 
         }
 
-        public void DrawObjects()
+        public void DrawObjects() //This is called every timer tick and draws the missiles and bombs to the screen
         {
             foreach (Missile missile in missiles.ToList())
             {
@@ -79,16 +80,16 @@ namespace SpaceInvaders
                 bomb.Move();
             }
         }
-        public int MissileCount()
+        public int MissileCount() //This returns the ammount of missiles so the limit can be check against
         {
             return missiles.Count;
         }
-        public void FireMissile()
+        public void FireMissile() //Fires a missile from the mothership
         {
             mothership.Shoot();
         }
 
-        public void RunGame()
+        public void RunGame() //The main game loop called at each tick
         {
             if (enemies.Count > 0)
             {
@@ -216,7 +217,10 @@ namespace SpaceInvaders
         }
 
 
-
+        public void MovePlayer(int x) //Moves the player to a given x position - The Mouse X position
+        {
+            mothership.Move(x);
+        }
 
 
 

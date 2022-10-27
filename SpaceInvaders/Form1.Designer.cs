@@ -44,7 +44,8 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::SpaceInvaders.Properties.Resources.player_mothership;
-            this.pictureBox1.Location = new System.Drawing.Point(401, 581);
+            this.pictureBox1.Location = new System.Drawing.Point(351, 436);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(64, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -53,32 +54,34 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(796, 660);
+            this.textBox1.Location = new System.Drawing.Point(696, 495);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
+            this.textBox1.Size = new System.Drawing.Size(110, 23);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(796, 618);
+            this.textBox2.Location = new System.Drawing.Point(696, 464);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
+            this.textBox2.Size = new System.Drawing.Size(110, 23);
             this.textBox2.TabIndex = 2;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(933, 699);
+            this.ClientSize = new System.Drawing.Size(816, 524);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.TransparencyKey = System.Drawing.Color.Lime;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);

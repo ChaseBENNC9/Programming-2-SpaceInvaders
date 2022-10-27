@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//This is the bomb, it has a similar behaviour to the missile except it moves downwards from an enemies position and does not have a set limit. After a random ammount of ticks
+//Or after a collision with the player it will be destroyed
 namespace SpaceInvaders
 {
     public class Bomb
@@ -20,6 +21,7 @@ namespace SpaceInvaders
 
         public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand,Rectangle boundary)
         {
+            this.boundary = boundary;
             this.position = position;
             this.velocity = velocity;
             this.graphics = graphics;

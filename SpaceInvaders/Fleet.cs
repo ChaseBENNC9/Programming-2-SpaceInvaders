@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceInvaders
 {
-    //
+    //This is the Fleet, It 
     public class Fleet
     {
 
