@@ -40,7 +40,6 @@ namespace SpaceInvaders
         public bool Destroyed { get => destroyed; set => destroyed = value; }
         public bool CanShoot { get => canShoot; set => canShoot = value; }
         public int Velocity { get => velocity; set => velocity = value; }
-        //public int Direction { get => direction; set => direction = value; }
         public int ShootNum { get => shootNum; set => shootNum = value; }
         public eDirection Direction { get => direction; set => direction = value; }
 

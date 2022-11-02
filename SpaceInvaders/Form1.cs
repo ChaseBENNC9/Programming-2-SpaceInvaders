@@ -1,3 +1,4 @@
+using System.IO;
 namespace SpaceInvaders
 {
     public partial class Form1 : Form
@@ -146,7 +147,7 @@ namespace SpaceInvaders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            controller.BackgroundSound();
         }
 
         private void button1_Click(object sender, EventArgs e)

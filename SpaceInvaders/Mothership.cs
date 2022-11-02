@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Media;
 namespace SpaceInvaders
 {
     //This is the Mothership that the player will control.
@@ -19,9 +19,10 @@ namespace SpaceInvaders
         private Graphics graphics;
         private PictureBox picturebox;
         private List<Missile> missiles;
+        private SoundPlayer sound;
         private Random rand;
 
-        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles,Random rand)
+        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles,Random rand,SoundPlayer sound)
         {
             this.picturebox = picturebox;
             this.boundary = boundary;
@@ -29,6 +30,7 @@ namespace SpaceInvaders
             this.graphics = graphics;
             this.missiles = missiles;
             this.rand = rand;
+            this.sound = sound;
         }
 
         public PictureBox Picturebox { get => picturebox; set => picturebox = value; }
@@ -49,6 +51,7 @@ namespace SpaceInvaders
         public void Shoot()
         {
             missiles.Add(new Missile(new Point(picturebox.Left + WIDTH/2 - (8), picturebox.Top), 32, graphics,missiles,rand,Properties.Resources.missile,boundary));
+            sound.Play();
         }
 
         

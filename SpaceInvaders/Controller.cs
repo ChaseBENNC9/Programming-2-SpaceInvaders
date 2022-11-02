@@ -5,11 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Media;
 namespace SpaceInvaders
 {
     public class Controller
     {
+        private SoundPlayer winSound;
+        private SoundPlayer loseSound;
+        private SoundPlayer missileSound;
+        private SoundPlayer bombSound;
+        private SoundPlayer destroySound;
+        private SoundPlayer backgroundSound;
+
         private Rectangle boundary;
         private Graphics graphics;
         private Random rand;
@@ -28,14 +35,16 @@ namespace SpaceInvaders
 
         public Controller(PictureBox picturebox, Rectangle boundary,Graphics graphics,Random rand)
         {
-            
+            missileSound = new SoundPlayer(Properties.Resources.blaster);
+            bombSound = new SoundPlayer(Properties.Resources.bomb);
+            backgroundSound = new SoundPlayer(Properties.Resources.theme);          
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
             enemies = new List<Enemy>();
             this.boundary = boundary;
             this.graphics = graphics;
             this.rand = rand;
-            mothership = new Mothership(picturebox, boundary, new Point(boundary.Width / 2, boundary.Height - 150), graphics, missiles, rand);
+            mothership = new Mothership(picturebox, boundary, new Point(boundary.Width / 2, boundary.Height - 150), graphics, missiles, rand,missileSound);
             enemiesLeft = 0;
             enemiesRight = 0;
             enemiesBottom = 0;
@@ -69,6 +78,10 @@ namespace SpaceInvaders
 
 
         }
+        public void BackgroundSound()
+        {
+            
+        }
 
         public void DrawObjects() //This is called every timer tick and draws the missiles and bombs to the screen
         {
@@ -95,8 +108,11 @@ namespace SpaceInvaders
 
         public void RunGame() //The main game loop called at each tick
         {
+           
             if (enemies.Count > 0)
+
             {
+                
                 enemiesLeft = enemies[0].Position.X - enemyspeed;
                 enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
                 enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
