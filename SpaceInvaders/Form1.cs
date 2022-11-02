@@ -15,13 +15,18 @@ namespace SpaceInvaders
         //Fleet has different fields for each // 3 constructors?
         private Random rand;
         private Rectangle boundary;
-
+        private StreamWriter sw;
+        private List<string> scores;
 
 
 
         public Form1()
         {
+            
             InitializeComponent();
+            scores = new List<string>();
+            sw = new StreamWriter("Highscores.txt", true);
+            sw.Close();
             pictureBox1.Hide();
             rand = new Random();
             panel2.Hide();
@@ -93,6 +98,7 @@ namespace SpaceInvaders
                 timer1.Enabled = false;
                 //MessageBox.Show("Game Over");
                 panel3.Show();
+                SaveScore();
             }
 
 
@@ -101,6 +107,42 @@ namespace SpaceInvaders
             graphics.DrawImage(bufferImage, 0, 0);
 
         }
+        private void SaveScore()
+        {
+            sw = new StreamWriter("Highscores.txt", true);
+            sw.WriteLine($"Score: {controller.Score}");
+            sw.Close();
+        }
+
+
+
+        private void HighScoreMenu() //reads the scores from the text file and displays the last 5  into a listbox
+        {
+            highscores.Items.Clear();
+            scores.Clear();
+            highscores.Items.Add("Highscores!");
+
+            StreamReader sr = new StreamReader("HighScores.txt");
+            while (!sr.EndOfStream)
+            {
+                scores.Add(sr.ReadLine()); //Reads all the entries in the text file into a list.
+            }
+            scores.Reverse(); //Reverses the list so the most recent are at the top
+            for (int i = 0; i < scores.Count; i++)
+            {
+                if (i < 5)
+                {
+                    highscores.Items.Add($"<{i + 1}> {scores[i]}"); //DIsplays the First Five entries of the reversed list into the listbox
+
+                }
+            }
+
+            sr.Close();
+            highscores.Show();
+        }
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -123,6 +165,7 @@ namespace SpaceInvaders
 
         private void button2_Click(object sender, EventArgs e)
         {
+            HighScoreMenu();
             panel2.Show();
 
         }

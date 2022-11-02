@@ -35,23 +35,6 @@ namespace SpaceInvaders
         public Point Position { get => position; set => position = value; }
 
 
-        //public void Move(int dir)
-        //{
-
-        //        picturebox.Left += dir*10;
-
-        //    if(picturebox.Left < boundary.Left)
-        //    {
-        //        picturebox.Left = boundary.Left;
-        //    }
-        //    else if(picturebox.Right > boundary.Right)
-        //    {
-        //        picturebox.Left = boundary.Right - 64;
-        //    }
-
-
-
-        //}
         public void Move(int mouse)
         {
             if(mouse-32 > boundary.Left && mouse+32 < boundary.Right)
@@ -62,14 +45,7 @@ namespace SpaceInvaders
 
         }
 
-        //public void Draw()
-        //{
 
-        //    graphics.DrawImage(image, position.X, position.Y, 64, 64);
-        //    //graphics.DrawRectangle(Pens.Red, position.X, position.Y, 25, 25);
-
-
-        //}
         public void Shoot()
         {
             missiles.Add(new Missile(new Point(picturebox.Left + WIDTH/2 - (8), picturebox.Top), 32, graphics,missiles,rand,Properties.Resources.missile,boundary));

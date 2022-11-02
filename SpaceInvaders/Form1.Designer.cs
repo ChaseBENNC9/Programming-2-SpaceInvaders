@@ -47,6 +47,7 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.highscores = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,7 +78,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SpaceInvaders.Properties.Resources.spaceinvaderstitle;
-            this.pictureBox2.Location = new System.Drawing.Point(132, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(203, 12);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(270, 261);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -86,7 +87,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(190, 297);
+            this.button1.Location = new System.Drawing.Point(269, 297);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 27);
             this.button1.TabIndex = 2;
@@ -96,7 +97,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(190, 344);
+            this.button2.Location = new System.Drawing.Point(269, 344);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(138, 27);
             this.button2.TabIndex = 3;
@@ -122,6 +123,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.highscores);
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(3, 3);
@@ -167,9 +169,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(571, 105);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 15);
+            this.label4.Size = new System.Drawing.Size(68, 15);
             this.label4.TabIndex = 7;
-            this.label4.Text = "10 Points";
+            this.label4.Text = "5 Points";
             // 
             // label2
             // 
@@ -230,12 +232,21 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::SpaceInvaders.Properties.Resources.gameover;
-            this.pictureBox5.Location = new System.Drawing.Point(119, -6);
+            this.pictureBox5.Location = new System.Drawing.Point(144, 68);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(528, 357);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
+            // 
+            // highscores
+            // 
+            this.highscores.FormattingEnabled = true;
+            this.highscores.ItemHeight = 15;
+            this.highscores.Location = new System.Drawing.Point(183, 117);
+            this.highscores.Name = "highscores";
+            this.highscores.Size = new System.Drawing.Size(308, 154);
+            this.highscores.TabIndex = 2;
             // 
             // Form1
             // 
@@ -292,5 +303,6 @@
         private ToolStripTextBox toolStripTextBox1;
         private Panel panel3;
         private PictureBox pictureBox5;
+        private ListBox highscores;
     }
 }
