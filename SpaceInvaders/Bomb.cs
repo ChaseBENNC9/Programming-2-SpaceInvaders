@@ -7,25 +7,24 @@ using System.Threading.Tasks;
 //Or after a collision with the player it will be destroyed
 namespace SpaceInvaders
 {
-    public class Bomb
+    public class Bomb : GameObject
     {
-        private Point position;
         private const int SIZE = 32;
         private int velocity;
-        private Graphics graphics;
         private List<Bomb> bombs;
         private Rectangle collider;
-        private Rectangle boundary;
         private int life;
         private Random rand;
 
 
-        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand,Rectangle boundary)
+        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand,Image image,Rectangle boundary) :
+            base(position,image,graphics,boundary)
         {
             this.boundary = boundary;
             this.position = position;
             this.velocity = velocity;
             this.graphics = graphics;
+            this.image = image;
             this.bombs = bombs;
             collider = new Rectangle(position.X, position.Y, SIZE, SIZE);
             this.rand = rand;
@@ -36,13 +35,13 @@ namespace SpaceInvaders
         public Rectangle Collider { get => collider; set => collider = value; }
         public int Life { get => life; set => life = value; }
 
-        public void Draw()
+        public override void Draw()
         {
             //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, SIZE, SIZE);
-            graphics.DrawImage(Properties.Resources.bomb1, position.X, position.Y, SIZE, SIZE);
+            graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
 
         }
-        public void Move()
+        public override void Move()
         {
             if (life > 0)
             {

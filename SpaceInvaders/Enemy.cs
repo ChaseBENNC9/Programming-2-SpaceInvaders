@@ -6,7 +6,7 @@ namespace SpaceInvaders
     //the game will end.
 
     //As the amount of enemies left decreases to certain ammounts the speed they move will increase at set intervals.
-    public class Enemy
+    public class Enemy : GameObject
     {
         private Point position;
         private Graphics graphics;
@@ -45,7 +45,7 @@ namespace SpaceInvaders
         public int Direction { get => direction; set => direction = value; }
         public int ShootNum { get => shootNum; set => shootNum = value; }
 
-        public void Draw()
+        public override void Draw()
         {
             graphics.DrawImage(image, position.X, position.Y, 32, 32);
             if (canShoot)
@@ -61,7 +61,7 @@ namespace SpaceInvaders
 
         }
 
-        public void Move()
+        public override void Move()
         {
             shootNum = rand.Next(1, 101);
             collider.X = position.X;
@@ -81,7 +81,7 @@ namespace SpaceInvaders
 
         public void Shoot()
         {
-            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand,boundary));
+            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
         }
     }
 }
