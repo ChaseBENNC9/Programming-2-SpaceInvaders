@@ -8,9 +8,6 @@ namespace SpaceInvaders
     //As the amount of enemies left decreases to certain ammounts the speed they move will increase at set intervals.
     public class Enemy : GameObject
     {
-        private Point position;
-        private Graphics graphics;
-        private Image image;
         private Rectangle collider;
         private List<Bomb> bombs;
         private Random rand;
@@ -19,8 +16,8 @@ namespace SpaceInvaders
         private bool canShoot;
         private int velocity;
         private int direction;
-        private Rectangle boundary;
-        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary)
+        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary) :
+            base(position,image,graphics,boundary)
         {
             this.rand = rand;
             this.boundary = boundary;
