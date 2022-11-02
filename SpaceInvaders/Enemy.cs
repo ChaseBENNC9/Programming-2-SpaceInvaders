@@ -8,6 +8,7 @@ namespace SpaceInvaders
     //As the amount of enemies left decreases to certain ammounts the speed they move will increase at set intervals.
     public class Enemy : GameObject
     {
+        private eDirection direction;
         private Rectangle collider;
         private List<Bomb> bombs;
         private Random rand;
@@ -15,7 +16,7 @@ namespace SpaceInvaders
         private bool destroyed;
         private bool canShoot;
         private int velocity;
-        private int direction;
+        //private int direction;
         public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary) :
             base(position,image,graphics,boundary)
         {
@@ -29,8 +30,8 @@ namespace SpaceInvaders
             collider = new Rectangle(position.X, position.Y, 25, 25);
             destroyed = false;
             canShoot = false;
-            direction = 1;
             shootNum = 0;
+            direction = eDirection.LEFT;
             
         }
 
@@ -39,8 +40,9 @@ namespace SpaceInvaders
         public bool Destroyed { get => destroyed; set => destroyed = value; }
         public bool CanShoot { get => canShoot; set => canShoot = value; }
         public int Velocity { get => velocity; set => velocity = value; }
-        public int Direction { get => direction; set => direction = value; }
+        //public int Direction { get => direction; set => direction = value; }
         public int ShootNum { get => shootNum; set => shootNum = value; }
+        public eDirection Direction { get => direction; set => direction = value; }
 
         public override void Draw()
         {
@@ -63,7 +65,16 @@ namespace SpaceInvaders
             shootNum = rand.Next(1, 101);
             collider.X = position.X;
             collider.Y = position.Y;
-            position.X += direction * velocity;
+            switch (direction)
+            {
+                case eDirection.LEFT:
+                    position.X -= velocity;
+                    break;
+                case eDirection.RIGHT:
+                    position.X += velocity;
+                    break;
+            }
+            
         }
 
         public void ShiftLevel()

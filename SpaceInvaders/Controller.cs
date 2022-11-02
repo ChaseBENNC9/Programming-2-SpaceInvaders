@@ -174,7 +174,15 @@ namespace SpaceInvaders
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.ShiftLevel();
-                    enemy.Direction = -enemy.Direction;
+                    if (enemy.Direction == eDirection.LEFT)
+                    {
+                        enemy.Direction = eDirection.RIGHT;
+                    }
+                    else
+                    {
+                        enemy.Direction = eDirection.LEFT;
+                    }
+       
                 }
 
             }
