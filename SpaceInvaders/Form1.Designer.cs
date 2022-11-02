@@ -221,9 +221,9 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.pictureBox5);
-            this.panel3.Location = new System.Drawing.Point(24, 18);
+            this.panel3.Location = new System.Drawing.Point(0, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(780, 472);
+            this.panel3.Size = new System.Drawing.Size(816, 493);
             this.panel3.TabIndex = 2;
             this.panel3.Visible = false;
             // 

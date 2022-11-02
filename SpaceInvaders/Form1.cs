@@ -76,6 +76,7 @@ namespace SpaceInvaders
             {
                 controller.FireMissile();
             }
+            else { MessageBox.Show("OUT of missiles!"); }
             //
             //canShoot = !canShoot;
 

@@ -28,6 +28,7 @@ namespace SpaceInvaders
 
         public Controller(PictureBox picturebox, Rectangle boundary,Graphics graphics,Random rand)
         {
+            
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
             enemies = new List<Enemy>();
@@ -111,6 +112,15 @@ namespace SpaceInvaders
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
                     gameOver = true;
+                }
+                foreach(Missile missile in missiles.ToList())
+                {
+                    if (bomb.Collider.IntersectsWith(missile.Collider))
+                    {
+                        missile.Destroy();
+                        bomb.Destroy();
+                        score += 5;
+                    }
                 }
 
             }
@@ -214,6 +224,7 @@ namespace SpaceInvaders
                         enemies.Remove(enemy);
                         score += 50;
                     }
+                   
 
 
                 }
