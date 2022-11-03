@@ -10,9 +10,11 @@ namespace SpaceInvaders
         private Graphics graphics;
         private Graphics bufferGraphics;
         private Controller controller;
+        private SoundPlayer winSound;
+        private SoundPlayer loseSound;
         //All of theese will eventually become part of a Fleet Object
-       // private List<Enemy> enemies; //2D array? or keep as a list? new var[4,10] (r,c)
-       // private List<Bomb> bombs; //List
+        // private List<Enemy> enemies; //2D array? or keep as a list? new var[4,10] (r,c)
+        // private List<Bomb> bombs; //List
         //private List<Missile> missiles; //Array
         /**********************************/
         //Fleet has different fields for each // 3 constructors?
@@ -28,7 +30,9 @@ namespace SpaceInvaders
             
             InitializeComponent();
             backgroundSound = new SoundPlayer(Properties.Resources.theme);
-            backgroundSound.Play();
+            winSound = new SoundPlayer(Properties.Resources.win);
+            loseSound = new SoundPlayer(Properties.Resources.lose);
+            backgroundSound.PlayLooping();
             scores = new List<string>();
             sw = new StreamWriter("Highscores.txt", true);
             sw.Close();
@@ -99,6 +103,7 @@ namespace SpaceInvaders
                 timer1.Enabled = false;
                 MessageBox.Show("Test");
                 panel3.Show(); //Lose Screen
+                loseSound.Play();
                 panel3.BringToFront();
                 restartGameToolStripMenuItem.Enabled = false;
                 newGameToolStripMenuItem.Enabled = true;
@@ -106,6 +111,7 @@ namespace SpaceInvaders
             }
             else if(controller.GameWon == true)
             {
+                winSound.Play();
                 restartGameToolStripMenuItem.Enabled = false;
                 newGameToolStripMenuItem.Enabled = true;
                 timer1.Enabled = false;

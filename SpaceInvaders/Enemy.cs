@@ -52,16 +52,16 @@ namespace SpaceInvaders
         public override void Draw()
         {
             graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
-            if (canShoot)
-            {
-            //    graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
+        //    if (canShoot)
+        //    {
+        //        graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
 
-            //}
-            //else
-            //{
-            //    graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
+        //    }
+        //    else
+        //    {
+        //        graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
 
-            //}
+        //    }
 
         }
 
@@ -84,7 +84,8 @@ namespace SpaceInvaders
 
         public void ShiftLevel()
         {
-            position.Y += 10;
+            position.Y += 24;
+            velocity += 2;
         }
 
         public void Destroy()

@@ -10,8 +10,7 @@ namespace SpaceInvaders
 {
     public class Controller
     {
-        private SoundPlayer winSound;
-        private SoundPlayer loseSound;
+
         private SoundPlayer missileSound;
         private SoundPlayer bombSound;
         private SoundPlayer destroySound;
@@ -40,6 +39,7 @@ namespace SpaceInvaders
             missileSound = new SoundPlayer(Properties.Resources.blaster);
             bombSound = new SoundPlayer(Properties.Resources.bomb);
             destroySound = new SoundPlayer(Properties.Resources.explosion);
+
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
             enemies = new List<Enemy>();
@@ -171,23 +171,23 @@ namespace SpaceInvaders
             {
 
 
-                enemyspeed = 6;
+                enemyspeed = 8;
             }
             else if (enemies.Count <= 20 && enemies.Count > 10)
             {
-                enemyspeed = 8;
+                enemyspeed = 10;
             }
             else if (enemies.Count <= 10 && enemies.Count > 5)
             {
-                enemyspeed = 9;
+                enemyspeed = 12;
             }
             else if (enemies.Count <= 5 && enemies.Count > 1)
             {
-                enemyspeed = 10;
+                enemyspeed = 15;
             }
             else if (enemies.Count == 1)
             {
-                enemyspeed = 15;
+                enemyspeed = 20;
             }
 
 
