@@ -14,7 +14,9 @@ namespace SpaceInvaders
         private SoundPlayer missileSound;
         private SoundPlayer bombSound;
         private SoundPlayer destroySound;
+        private SoundPlayer loseSound;
 
+        private SoundPlayer winSound;
         private Rectangle boundary;
         private Graphics graphics;
         private Random rand;
@@ -39,7 +41,8 @@ namespace SpaceInvaders
             missileSound = new SoundPlayer(Properties.Resources.blaster);
             bombSound = new SoundPlayer(Properties.Resources.bomb);
             destroySound = new SoundPlayer(Properties.Resources.explosion);
-
+            winSound = new SoundPlayer(Properties.Resources.win);
+            loseSound = new SoundPlayer(Properties.Resources.lose);
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
             enemies = new List<Enemy>();
@@ -128,7 +131,7 @@ namespace SpaceInvaders
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
                     gameOver = true;
-                    //loseSound.Play();
+                    loseSound.Play();
                 }
                 foreach (Missile missile in missiles.ToList())
                 {
@@ -151,15 +154,15 @@ namespace SpaceInvaders
 
             if (enemies.Count == 0)
             {
-                //winSound.Play(); //WINNING SCENARIO
+                winSound.Play(); //WINNING SCENARIO
                 GameWon = true;
 
                 // MessageBox.Show("Game Over +");
 
             }
-            else if (enemiesBottom >= mothership.Picturebox.Top)
+            else if (enemiesBottom >= mothership.Picturebox.Top) //or bottom of form.
             {
-                //loseSound.Play();
+                loseSound.Play();
                 gameOver = true;
             }
 
