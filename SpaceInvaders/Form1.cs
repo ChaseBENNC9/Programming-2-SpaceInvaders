@@ -21,6 +21,7 @@ namespace SpaceInvaders
         private StreamWriter sw;
         private List<string> scores;
         private SoundPlayer backgroundSound;
+        private bool gameStarted;
         
 
         public Form1()
@@ -43,7 +44,7 @@ namespace SpaceInvaders
             //enemies = new List<Enemy>();
             boundary = ClientRectangle;
             controller = new Controller(pictureBox1,boundary, bufferGraphics, rand);
-
+            gameStarted = false;
             timer1.Enabled = false;
             menuStrip1.Hide();
 
@@ -60,6 +61,10 @@ namespace SpaceInvaders
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //MessageBox.Show($"{e.KeyCode}");
+            if(e.KeyCode == Keys.Escape && gameStarted)
+            {
+                timer1.Enabled = !timer1.Enabled;
+            }
             
 
 
@@ -80,7 +85,7 @@ namespace SpaceInvaders
         {
 
 
-            if(canShoot && controller.MissileCount() < 15)
+            if(canShoot && controller.MissileCount() < 15 && timer1.Enabled)
             {
                 controller.FireMissile();
             }
@@ -104,6 +109,7 @@ namespace SpaceInvaders
                 restartGameToolStripMenuItem.Enabled = false;
                 newGameToolStripMenuItem.Enabled = true;
                 SaveScore();
+                gameStarted = false;
             }
             else if(controller.GameWon == true)
             {
@@ -113,6 +119,7 @@ namespace SpaceInvaders
                 panel4.Show(); //Win Screen                               
                 panel4.BringToFront();
                 SaveScore();
+                gameStarted = false;
             }
 
 
@@ -177,6 +184,7 @@ namespace SpaceInvaders
             pictureBox1.Show();
             menuStrip1.Show();
             newGameToolStripMenuItem.Enabled = false;
+            gameStarted = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -218,6 +226,7 @@ namespace SpaceInvaders
             panel3.Hide();
             panel4.Hide();
             timer1.Enabled = true;
+            gameStarted = true;
             restartGameToolStripMenuItem.Enabled = true;
             //menuStrip1.Hide();
         }
@@ -225,7 +234,7 @@ namespace SpaceInvaders
         private void quitToMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             timer1.Enabled = false;
-
+            gameStarted = false;
             string message = "Are you Sure you want to Quit? \nIf the game is unfinished, the scores for this round \nwill be lost!";
             string caption = "Quit to Menu?";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
