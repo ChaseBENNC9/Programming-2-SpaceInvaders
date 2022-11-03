@@ -9,7 +9,7 @@ namespace SpaceInvaders
 {
     public class Bomb : GameObject
     {
-        private const int SIZE = 32;
+        private const int SIZE = 16;
         private int velocity;
         private List<Bomb> bombs;
         private Rectangle collider;

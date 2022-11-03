@@ -44,15 +44,16 @@ namespace SpaceInvaders
             controller = new Controller(pictureBox1,boundary, bufferGraphics, rand);
 
             timer1.Enabled = false;
-            
+            menuStrip1.Hide();
+
             //Grid Layout
             //Picture Box For Player Graphics draw image for ( Missile, Enemies, Bomb) -Enemies in a List and add the missiles to an array or list to limit how many at once.
-            
+
 
 
         }
 
-     
+
 
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -84,7 +85,7 @@ namespace SpaceInvaders
             }
            
             
-            canShoot = !canShoot;
+            
 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -95,14 +96,21 @@ namespace SpaceInvaders
             controller.DrawObjects();
             if (controller.GameOver == true)
             {
-                timer1.Enabled = false;             
-                panel3.Show(); //Lose Screen                               
+                timer1.Enabled = false;
+                MessageBox.Show("Test");
+                panel3.Show(); //Lose Screen
+                panel3.BringToFront();
+                restartGameToolStripMenuItem.Enabled = false;
+                newGameToolStripMenuItem.Enabled = true;
                 SaveScore();
             }
             else if(controller.GameWon == true)
             {
+                restartGameToolStripMenuItem.Enabled = false;
+                newGameToolStripMenuItem.Enabled = true;
                 timer1.Enabled = false;
                 panel4.Show(); //Win Screen                               
+                panel4.BringToFront();
                 SaveScore();
             }
 
@@ -133,7 +141,10 @@ namespace SpaceInvaders
                 scores.Add(sr.ReadLine()); //Reads all the entries in the text file into a list.
             }
             scores.Reverse(); //Reverses the list so the most recent are at the top
-            for (int i = 0; i < scores.Count; i++)
+
+
+
+             for (int i = 0; i < scores.Count; i++)
             {
                 if (i < 5)
                 {
@@ -158,8 +169,12 @@ namespace SpaceInvaders
         {
             backgroundSound.Stop();
             panel1.Hide();
+            panel2.Hide();
+            panel3.Hide();
+            panel4.Hide();
             timer1.Enabled = true;
             pictureBox1.Show();
+            menuStrip1.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -173,10 +188,62 @@ namespace SpaceInvaders
         {
             HighScoreMenu();
             panel2.Show();
+            panel2.BringToFront();
 
         }
 
+        private void restartGameToolStripMenuItem_Click(object sender, EventArgs e) //The restart button is available at any time during the game but the scores will not be saved.
+        {
+            timer1.Enabled = false;
+            string message = "Are you Sure you want to restart? \n The Scores for this round will NOT be saved!";
+            string caption = "Restart Game?";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+            if (result == DialogResult.Yes)
+            {
+               controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
+                panel3.Hide();
+                panel4.Hide();
+            }
+            timer1.Enabled = true;
+            
+        }
 
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            newGameToolStripMenuItem.Enabled = false;
+            controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
+            panel3.Hide();
+            panel4.Hide();
+            timer1.Enabled = true;
+            //menuStrip1.Hide();
+        }
+
+        private void quitToMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer1.Enabled = false;
+
+            string message = "Are you Sure you want to Quit? \nIf the game is unfinished, the scores for this round \nwill be lost!";
+            string caption = "Quit to Menu?";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, caption, buttons);
+            if (result == DialogResult.Yes)
+            {
+                controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
+                panel1.Show();
+                panel1.BringToFront();
+                //menuStrip1.Hide();
+                //gameStarted = false;
+                menuStrip1.Hide();
+
+            }
+            else
+            {
+                timer1.Enabled = true;
+                //menuStrip1.Hide();
+
+            }
+        }
     }
     
 }

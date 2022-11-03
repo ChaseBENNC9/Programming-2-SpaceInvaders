@@ -20,6 +20,7 @@ namespace SpaceInvaders
         private bool destroyed;
         private bool canShoot;
         private int velocity;
+        private const int SIZE = 48;
         //private int direction;
         public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary,SoundPlayer sound) :
             base(position,image,graphics,boundary)
@@ -32,7 +33,7 @@ namespace SpaceInvaders
             this.velocity = velocity;
             this.image = image;
             this.bombs = bombs;
-            collider = new Rectangle(position.X, position.Y, 25, 25);
+            collider = new Rectangle(position.X, position.Y, SIZE, SIZE);
             destroyed = false;
             canShoot = false;
             shootNum = 0;
@@ -50,15 +51,15 @@ namespace SpaceInvaders
 
         public override void Draw()
         {
-            graphics.DrawImage(image, position.X, position.Y, 32, 32);
-            //if (canShoot)
-            //{
-            //    graphics.DrawRectangle(Pens.Green, position.X, position.Y, 32, 32);
+            graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
+            if (canShoot)
+            {
+            //    graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
 
             //}
             //else
             //{
-            //    graphics.DrawRectangle(Pens.Red, position.X, position.Y, 32, 32);
+            //    graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
 
             //}
 

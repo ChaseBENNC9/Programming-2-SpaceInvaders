@@ -25,7 +25,8 @@ namespace SpaceInvaders
         private bool gameOver = false;
         private bool gameWon = false;
         private int score;
-
+        private const int OFFSET = 50;
+        private const int MAX_ENEMIES = 40;
         private List<Enemy> enemies;
 
         private int enemiesLeft, enemiesRight, enemiesBottom, enemyspeed;
@@ -56,18 +57,18 @@ namespace SpaceInvaders
 
             int index = 0;
 
-            for (int x = 100; x < 800; x += 75)
+            for (int x = 100; x < 800; x += OFFSET)
             {
-                for (int y = 10; y < 200; y += 50)
+                for (int y = 10; y < 200; y += OFFSET)
                 {
-                    if (index < 40)
+                    if (index < MAX_ENEMIES)
                     {
 
                         enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand, boundary, bombSound));
-                        if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
-                        {
-                            enemies[index].CanShoot = true;
-                        }
+                        //if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
+                        //{
+                        //    enemies[index].CanShoot = true;
+                        //}
                         index++;
                     }
 
