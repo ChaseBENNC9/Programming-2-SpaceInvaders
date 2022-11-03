@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//The class which each object in the game inherits from. 
+//The class is the GameObject, each object in the game inherits from this class
 namespace SpaceInvaders
 {
     public abstract class GameObject

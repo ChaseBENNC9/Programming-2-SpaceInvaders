@@ -269,7 +269,8 @@ namespace SpaceInvaders
 
         public void MovePlayer(int x) //Moves the player to a given x position - The Mouse X position
         {
-            mothership.Move(x);
+            //set the variable to be x
+            mothership.Move(x); //mothership.Move()
         }
 
 

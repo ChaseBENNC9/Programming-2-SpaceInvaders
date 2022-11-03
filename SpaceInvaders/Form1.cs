@@ -180,6 +180,7 @@ namespace SpaceInvaders
             panel2.Hide();
             panel3.Hide();
             panel4.Hide();
+            
             timer1.Enabled = true;
             pictureBox1.Show();
             menuStrip1.Show();
