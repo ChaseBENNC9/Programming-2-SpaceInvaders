@@ -1,4 +1,6 @@
 ﻿
+using System.Media;
+
 namespace SpaceInvaders
 {
     //This is the enemy, It moves in a grid in a steplock motion and drops a Bomb at random intervals if it is active. 
@@ -8,6 +10,8 @@ namespace SpaceInvaders
     //As the amount of enemies left decreases to certain ammounts the speed they move will increase at set intervals.
     public class Enemy : GameObject
     {
+        private SoundPlayer sound;
+
         private eDirection direction;
         private Rectangle collider;
         private List<Bomb> bombs;
@@ -17,13 +21,14 @@ namespace SpaceInvaders
         private bool canShoot;
         private int velocity;
         //private int direction;
-        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary) :
+        public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary,SoundPlayer sound) :
             base(position,image,graphics,boundary)
         {
             this.rand = rand;
             this.boundary = boundary;
             this.position = position;
             this.graphics = graphics;
+            this.sound = sound;
             this.velocity = velocity;
             this.image = image;
             this.bombs = bombs;
@@ -89,6 +94,7 @@ namespace SpaceInvaders
         public void Shoot()
         {
             bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
+            sound.Play();
         }
     }
 }

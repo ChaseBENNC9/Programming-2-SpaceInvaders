@@ -24,6 +24,7 @@ namespace SpaceInvaders
         private List<Missile> missiles;
         private List<Bomb> bombs;
         private bool gameOver = false;
+        private bool gameWon = false;
         private int score;
 
         private List<Enemy> enemies;
@@ -32,12 +33,14 @@ namespace SpaceInvaders
 
         public bool GameOver { get => gameOver; set => gameOver = value; }
         public int Score { get => score; set => score = value; }
+        public bool GameWon { get => gameWon; set => gameWon = value; }
 
         public Controller(PictureBox picturebox, Rectangle boundary,Graphics graphics,Random rand)
         {
             missileSound = new SoundPlayer(Properties.Resources.blaster);
             bombSound = new SoundPlayer(Properties.Resources.bomb);
-            backgroundSound = new SoundPlayer(Properties.Resources.theme);          
+            backgroundSound = new SoundPlayer(Properties.Resources.theme);
+            destroySound = new SoundPlayer(Properties.Resources.explosion);
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
             enemies = new List<Enemy>();
@@ -61,7 +64,7 @@ namespace SpaceInvaders
                     if (index < 40)
                     {
                         
-                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand,boundary));
+                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand,boundary,bombSound));
                         if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
                         {
                             enemies[index].CanShoot = true;
@@ -78,10 +81,7 @@ namespace SpaceInvaders
 
 
         }
-        public void BackgroundSound()
-        {
-            
-        }
+ 
 
         public void DrawObjects() //This is called every timer tick and draws the missiles and bombs to the screen
         {
@@ -128,6 +128,7 @@ namespace SpaceInvaders
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
                     gameOver = true;
+                    //loseSound.Play();
                 }
                 foreach(Missile missile in missiles.ToList())
                 {
@@ -136,6 +137,7 @@ namespace SpaceInvaders
                         missile.Destroy();
                         bomb.Destroy();
                         score += 5;
+                        destroySound.Play();
                     }
                 }
 
@@ -147,13 +149,18 @@ namespace SpaceInvaders
 
 
 
-            if (enemies.Count == 0 || enemiesBottom >= mothership.Picturebox.Top || mothership.Picturebox.Visible == false)
+            if (enemies.Count == 0)
             {
-
-                gameOver = true;
+                //winSound.Play(); //WINNING SCENARIO
+                GameWon = true;
 
                 // MessageBox.Show("Game Over +");
 
+            }
+            else if(enemiesBottom >= mothership.Picturebox.Top)
+            {
+                //loseSound.Play();
+                gameOver = true;
             }
 
             if (enemies.Count <= 40 && enemies.Count > 30)
@@ -247,6 +254,7 @@ namespace SpaceInvaders
                         missile.Destroy(); //alive = false
                         enemies.Remove(enemy);
                         score += 50;
+                        destroySound.Play();
                     }
                    
 

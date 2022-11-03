@@ -175,5 +175,15 @@ namespace SpaceInvaders.Properties {
                 return ResourceManager.GetStream("theme", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap winnerScreen {
+            get {
+                object obj = ResourceManager.GetObject("winnerScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

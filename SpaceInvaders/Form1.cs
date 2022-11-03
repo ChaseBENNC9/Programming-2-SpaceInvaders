@@ -1,4 +1,6 @@
 using System.IO;
+using System.Media;
+
 namespace SpaceInvaders
 {
     public partial class Form1 : Form
@@ -18,13 +20,15 @@ namespace SpaceInvaders
         private Rectangle boundary;
         private StreamWriter sw;
         private List<string> scores;
-
-
+        private SoundPlayer backgroundSound;
+        
 
         public Form1()
         {
             
             InitializeComponent();
+            backgroundSound = new SoundPlayer(Properties.Resources.theme);
+            backgroundSound.Play();
             scores = new List<string>();
             sw = new StreamWriter("Highscores.txt", true);
             sw.Close();
@@ -53,13 +57,9 @@ namespace SpaceInvaders
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            ////MessageBox.Show($"{e.KeyCode}");
-            //if (e.KeyCode == Keys.NumPad5)
-            //{
-            //    enemies.Clear();
+            //MessageBox.Show($"{e.KeyCode}");
+            
 
-            //}
-           
 
         }
 
@@ -96,9 +96,14 @@ namespace SpaceInvaders
             controller.DrawObjects();
             if (controller.GameOver == true)
             {
+                timer1.Enabled = false;             
+                panel3.Show(); //Lose Screen                               
+                SaveScore();
+            }
+            else if(controller.GameWon == true)
+            {
                 timer1.Enabled = false;
-                //MessageBox.Show("Game Over");
-                panel3.Show();
+                panel4.Show(); //Win Screen                               
                 SaveScore();
             }
 
@@ -147,11 +152,12 @@ namespace SpaceInvaders
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            controller.BackgroundSound();
+         
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            backgroundSound.Stop();
             panel1.Hide();
             timer1.Enabled = true;
             pictureBox1.Show();
