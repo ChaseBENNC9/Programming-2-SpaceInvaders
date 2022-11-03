@@ -10,30 +10,30 @@ namespace SpaceInvaders
     //If it collides with an enemy It will be destroyed
     public class Missile : GameObject
     {
-        
+
         private int velocity;
         private const int WIDTH = 16;
         private const int HEIGHT = 32;
-      
+
         private List<Missile> missiles;
         private Rectangle collider;
-        
+
         private int life;
         private Random rand;
-        
 
 
 
-        public Missile(Point position, int velocity,Graphics graphics, List<Missile> missiles,Random rand,Image image,Rectangle boundary) :
-            base(position,image,graphics,boundary)
-           
+
+        public Missile(Point position, int velocity, Graphics graphics, List<Missile> missiles, Random rand, Image image, Rectangle boundary) :
+            base(position, image, graphics, boundary)
+
         {
             this.position = position;
             this.velocity = velocity;
             this.graphics = graphics;
             this.boundary = boundary;
             this.missiles = missiles;
-            collider = new Rectangle(position.X,position.Y,WIDTH,HEIGHT);
+            collider = new Rectangle(position.X, position.Y, WIDTH, HEIGHT);
             this.rand = rand;
             life = rand.Next(1, 70);
         }
@@ -45,7 +45,7 @@ namespace SpaceInvaders
         public override void Draw()
         {
             //graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
-            graphics.DrawImage(image, position.X, position.Y,WIDTH,HEIGHT);
+            graphics.DrawImage(image, position.X, position.Y, WIDTH, HEIGHT);
         }
         public override void Move()
         {
@@ -69,7 +69,7 @@ namespace SpaceInvaders
             {
                 Destroy();
             }
-            
+
         }
 
         public void Destroy()
@@ -77,7 +77,7 @@ namespace SpaceInvaders
             //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 
             missiles.Remove(this);
-            
+
         }
 
 

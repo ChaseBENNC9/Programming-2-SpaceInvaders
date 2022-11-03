@@ -15,7 +15,6 @@ namespace SpaceInvaders
         private SoundPlayer missileSound;
         private SoundPlayer bombSound;
         private SoundPlayer destroySound;
-        private SoundPlayer backgroundSound;
 
         private Rectangle boundary;
         private Graphics graphics;
@@ -35,11 +34,10 @@ namespace SpaceInvaders
         public int Score { get => score; set => score = value; }
         public bool GameWon { get => gameWon; set => gameWon = value; }
 
-        public Controller(PictureBox picturebox, Rectangle boundary,Graphics graphics,Random rand)
+        public Controller(PictureBox picturebox, Rectangle boundary, Graphics graphics, Random rand)
         {
             missileSound = new SoundPlayer(Properties.Resources.blaster);
             bombSound = new SoundPlayer(Properties.Resources.bomb);
-            backgroundSound = new SoundPlayer(Properties.Resources.theme);
             destroySound = new SoundPlayer(Properties.Resources.explosion);
             missiles = new List<Missile>();
             bombs = new List<Bomb>();
@@ -47,7 +45,7 @@ namespace SpaceInvaders
             this.boundary = boundary;
             this.graphics = graphics;
             this.rand = rand;
-            mothership = new Mothership(picturebox, boundary, new Point(boundary.Width / 2, boundary.Height - 150), graphics, missiles, rand,missileSound);
+            mothership = new Mothership(picturebox, boundary, new Point(boundary.Width / 2, boundary.Height - 150), graphics, missiles, rand, missileSound);
             enemiesLeft = 0;
             enemiesRight = 0;
             enemiesBottom = 0;
@@ -57,14 +55,15 @@ namespace SpaceInvaders
 
 
             int index = 0;
+
             for (int x = 100; x < 800; x += 75)
             {
                 for (int y = 10; y < 200; y += 50)
                 {
                     if (index < 40)
                     {
-                        
-                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand,boundary,bombSound));
+
+                        enemies.Add(new Enemy(new Point(x, y), enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand, boundary, bombSound));
                         if (index % 4 == 3) //Initially, Set canShoot for all the front Line enemies to True
                         {
                             enemies[index].CanShoot = true;
@@ -81,7 +80,7 @@ namespace SpaceInvaders
 
 
         }
- 
+
 
         public void DrawObjects() //This is called every timer tick and draws the missiles and bombs to the screen
         {
@@ -108,11 +107,11 @@ namespace SpaceInvaders
 
         public void RunGame() //The main game loop called at each tick
         {
-           
+
             if (enemies.Count > 0)
 
             {
-                
+
                 enemiesLeft = enemies[0].Position.X - enemyspeed;
                 enemiesRight = enemies[enemies.Count - 1].Position.X + 32 + enemyspeed;
                 enemiesBottom = enemies[enemies.Count - 1].Position.Y + 32;
@@ -130,7 +129,7 @@ namespace SpaceInvaders
                     gameOver = true;
                     //loseSound.Play();
                 }
-                foreach(Missile missile in missiles.ToList())
+                foreach (Missile missile in missiles.ToList())
                 {
                     if (bomb.Collider.IntersectsWith(missile.Collider))
                     {
@@ -157,7 +156,7 @@ namespace SpaceInvaders
                 // MessageBox.Show("Game Over +");
 
             }
-            else if(enemiesBottom >= mothership.Picturebox.Top)
+            else if (enemiesBottom >= mothership.Picturebox.Top)
             {
                 //loseSound.Play();
                 gameOver = true;
@@ -205,7 +204,7 @@ namespace SpaceInvaders
                     {
                         enemy.Direction = eDirection.LEFT;
                     }
-       
+
                 }
 
             }
@@ -256,7 +255,7 @@ namespace SpaceInvaders
                         score += 50;
                         destroySound.Play();
                     }
-                   
+
 
 
                 }

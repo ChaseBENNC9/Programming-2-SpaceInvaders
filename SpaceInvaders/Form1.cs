@@ -82,14 +82,13 @@ namespace SpaceInvaders
             {
                 controller.FireMissile();
             }
-            else { MessageBox.Show("OUT of missiles!"); }
-            //
-            //canShoot = !canShoot;
+           
+            
+            canShoot = !canShoot;
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //textBox1.Text = controller.MissileCount().ToString();
             toolStripTextBox1.Text = $"Score: {controller.Score}";
             bufferGraphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
             controller.RunGame();

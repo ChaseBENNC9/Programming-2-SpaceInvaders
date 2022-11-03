@@ -51,16 +51,16 @@ namespace SpaceInvaders
         public override void Draw()
         {
             graphics.DrawImage(image, position.X, position.Y, 32, 32);
-            if (canShoot)
-            {
-                graphics.DrawRectangle(Pens.Green, position.X, position.Y, 32, 32);
+            //if (canShoot)
+            //{
+            //    graphics.DrawRectangle(Pens.Green, position.X, position.Y, 32, 32);
 
-            }
-            else
-            {
-                graphics.DrawRectangle(Pens.Red, position.X, position.Y, 32, 32);
+            //}
+            //else
+            //{
+            //    graphics.DrawRectangle(Pens.Red, position.X, position.Y, 32, 32);
 
-            }
+            //}
 
         }
 
