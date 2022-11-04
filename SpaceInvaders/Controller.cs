@@ -23,8 +23,9 @@ namespace SpaceInvaders
         private Mothership mothership;
         private List<Missile> missiles;
         private List<Bomb> bombs;
-        private bool gameOver = false;
-        private bool gameWon = false;
+        private bool gameOver;
+        private bool gameWon;
+        private bool columnFree;
         private int score;
         private const int OFFSET = 50;
         private const int MAX_ENEMIES = 40;
@@ -44,7 +45,7 @@ namespace SpaceInvaders
             winSound = new SoundPlayer(Properties.Resources.win);
             loseSound = new SoundPlayer(Properties.Resources.lose);
             missiles = new List<Missile>();
-            bombs = new List<Bomb>();
+            bombs = new List<Bomb>();  
             enemies = new List<Enemy>();
             this.boundary = boundary;
             this.graphics = graphics;
@@ -55,10 +56,13 @@ namespace SpaceInvaders
             enemiesBottom = 0;
             enemyspeed = 5;
             score = 0;
+        gameOver = false;
+        gameWon = false;
+        columnFree = false;
 
 
 
-            int index = 0;
+        int index = 0;
 
             for (int x = 100; x < 800; x += OFFSET)
             {
@@ -160,7 +164,7 @@ namespace SpaceInvaders
                 // MessageBox.Show("Game Over +");
 
             }
-            else if (enemiesBottom >= mothership.Picturebox.Top) //or bottom of form.
+            else if (enemiesBottom >= boundary.Bottom/*mothership.Picturebox.Top*/) //or bottom of form.
             {
                 loseSound.Play();
                 gameOver = true;
@@ -223,18 +227,18 @@ namespace SpaceInvaders
 
 
                 int test_Y = enemy.Position.Y; //test the y position adding the gap between each enemy
-                bool test_y_empty = true; //Is the test_y position free?
-                foreach (Enemy test in enemies) //loop through enemies again and test if the column is free, the offset counts 3 forwards
+                columnFree = true; //Is the test_y position free?
+                foreach (Enemy enemyPos in enemies.ToList()) //loop through enemies again and test if the column is free, the offset counts 3 forwards
                 {
-                    if ((test.Position.Y == test_Y + 50 || test.Position.Y == test_Y + 100 || test.Position.Y == test_Y + 150) && test.Position.X == enemy.Position.X)
+                    if ((enemyPos.Position.Y == enemy.Position.Y + OFFSET || enemyPos.Position.Y == enemy.Position.Y + 2*OFFSET || enemyPos.Position.Y == enemy.Position.Y + 3*OFFSET) && enemyPos.Position.X == enemy.Position.X)
                     {
-                        test_y_empty = false;
+                        columnFree = false;
 
 
                     }
 
                 }
-                if (test_y_empty)
+                if (columnFree)
                 {
                     enemy.CanShoot = true;
                 }

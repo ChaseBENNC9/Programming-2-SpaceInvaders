@@ -21,6 +21,8 @@ namespace SpaceInvaders
         private bool canShoot;
         private int velocity;
         private const int SIZE = 48;
+        private const int DROPCHANCE = 100;
+        private const int SPEEDCHANGE = 2;
         //private int direction;
         public Enemy(Point position, int velocity, Graphics graphics, Image image, List<Bomb> bombs,Random rand,Rectangle boundary,SoundPlayer sound) :
             base(position,image,graphics,boundary)
@@ -52,22 +54,23 @@ namespace SpaceInvaders
         public override void Draw()
         {
             graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
-        //    if (canShoot)
-        //    {
-        //        graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
+            if (canShoot)
+            {
+                graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
 
-        //    }
-        //    else
-        //    {
-        //        graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
+            }
+            else
+            {
+                graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
 
-        //    }
+            }
 
         }
 
         public override void Move()
         {
-            shootNum = rand.Next(1, 101);
+            //
+            shootNum = rand.Next(DROPCHANCE);
             collider.X = position.X;
             collider.Y = position.Y;
             switch (direction)
@@ -84,8 +87,8 @@ namespace SpaceInvaders
 
         public void ShiftLevel()
         {
-            position.Y += 24;
-            velocity += 2;
+            position.Y += SIZE/2;
+            velocity += SPEEDCHANGE;
         }
 
         public void Destroy()
@@ -95,7 +98,7 @@ namespace SpaceInvaders
 
         public void Shoot()
         {
-            bombs.Add(new Bomb(new Point(position.X+16,position.Y+32), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
+            bombs.Add(new Bomb(new Point(position.X+SIZE/2,position.Y+SIZE), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
             sound.Play();
         }
     }
