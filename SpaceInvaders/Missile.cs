@@ -72,7 +72,7 @@ namespace SpaceInvaders
 
         }
 
-        public void Destroy()
+        public override void Destroy()
         {
             //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 

@@ -130,6 +130,15 @@ namespace SpaceInvaders.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream invaderkilled {
+            get {
+                return ResourceManager.GetStream("invaderkilled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream lose {
             get {
                 return ResourceManager.GetStream("lose", resourceCulture);
