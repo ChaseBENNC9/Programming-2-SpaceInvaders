@@ -54,7 +54,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -77,10 +76,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Image = global::SpaceInvaders.Properties.Resources.player_mothership;
-            this.pictureBox1.Location = new System.Drawing.Point(340, 426);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(389, 568);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(73, 85);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -88,18 +86,20 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SpaceInvaders.Properties.Resources.spaceinvaderstitle;
-            this.pictureBox2.Location = new System.Drawing.Point(246, -24);
+            this.pictureBox2.Location = new System.Drawing.Point(281, -32);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(324, 312);
+            this.pictureBox2.Size = new System.Drawing.Size(370, 416);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(340, 258);
+            this.button1.Location = new System.Drawing.Point(389, 344);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 27);
+            this.button1.Size = new System.Drawing.Size(158, 36);
             this.button1.TabIndex = 2;
             this.button1.Text = "Play";
             this.button1.UseVisualStyleBackColor = true;
@@ -107,9 +107,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(340, 298);
+            this.button2.Location = new System.Drawing.Point(389, 397);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(138, 27);
+            this.button2.Size = new System.Drawing.Size(158, 36);
             this.button2.TabIndex = 3;
             this.button2.Text = "Highscores";
             this.button2.UseVisualStyleBackColor = true;
@@ -129,17 +130,18 @@
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Location = new System.Drawing.Point(0, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(816, 496);
+            this.panel1.Size = new System.Drawing.Size(933, 661);
             this.panel1.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(617, 180);
+            this.label7.Location = new System.Drawing.Point(705, 240);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 15);
+            this.label7.Size = new System.Drawing.Size(181, 20);
             this.label7.TabIndex = 9;
             this.label7.Text = "Defeat all enemies to Win";
             // 
@@ -147,9 +149,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(617, 147);
+            this.label6.Location = new System.Drawing.Point(705, 196);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 15);
+            this.label6.Size = new System.Drawing.Size(116, 20);
             this.label6.TabIndex = 8;
             this.label6.Text = "Escape to pause";
             // 
@@ -158,9 +160,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(655, 65);
+            this.label3.Location = new System.Drawing.Point(749, 87);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 15);
+            this.label3.Size = new System.Drawing.Size(90, 18);
             this.label3.TabIndex = 6;
             this.label3.Text = "50 Points";
             // 
@@ -169,9 +171,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Showcard Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(655, 102);
+            this.label4.Location = new System.Drawing.Point(749, 136);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 15);
+            this.label4.Size = new System.Drawing.Size(80, 18);
             this.label4.TabIndex = 7;
             this.label4.Text = "5 Points";
             // 
@@ -179,18 +181,19 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(617, 20);
+            this.label2.Location = new System.Drawing.Point(705, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 15);
+            this.label2.Size = new System.Drawing.Size(101, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Click to Shoot";
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::SpaceInvaders.Properties.Resources.bomb1;
-            this.pictureBox4.Location = new System.Drawing.Point(617, 92);
+            this.pictureBox4.Location = new System.Drawing.Point(705, 123);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox4.Size = new System.Drawing.Size(37, 43);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 7;
             this.pictureBox4.TabStop = false;
@@ -198,9 +201,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::SpaceInvaders.Properties.Resources.enemy_ship;
-            this.pictureBox3.Location = new System.Drawing.Point(617, 54);
+            this.pictureBox3.Location = new System.Drawing.Point(705, 72);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox3.Size = new System.Drawing.Size(37, 43);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
@@ -212,24 +216,27 @@
             this.panel2.Controls.Add(this.button3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(0, 1);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(823, 496);
+            this.panel2.Size = new System.Drawing.Size(941, 661);
             this.panel2.TabIndex = 5;
             // 
             // highscores
             // 
             this.highscores.FormattingEnabled = true;
-            this.highscores.ItemHeight = 15;
-            this.highscores.Location = new System.Drawing.Point(257, 171);
+            this.highscores.ItemHeight = 20;
+            this.highscores.Location = new System.Drawing.Point(294, 228);
+            this.highscores.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.highscores.Name = "highscores";
-            this.highscores.Size = new System.Drawing.Size(308, 154);
+            this.highscores.Size = new System.Drawing.Size(351, 204);
             this.highscores.TabIndex = 2;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(3, 3);
+            this.button3.Location = new System.Drawing.Point(3, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(86, 31);
             this.button3.TabIndex = 1;
             this.button3.Text = "Back";
             this.button3.UseVisualStyleBackColor = true;
@@ -239,9 +246,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(294, 71);
+            this.label1.Location = new System.Drawing.Point(336, 95);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 15);
+            this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "High score stuff";
             // 
@@ -254,36 +261,37 @@
             this.restartGameToolStripMenuItem,
             this.newGameToolStripMenuItem,
             this.quitToMenuToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 497);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 666);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(816, 27);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(933, 33);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBox1.Size = new System.Drawing.Size(114, 27);
             this.toolStripTextBox1.Text = "Score: ";
             // 
             // restartGameToolStripMenuItem
             // 
             this.restartGameToolStripMenuItem.Name = "restartGameToolStripMenuItem";
-            this.restartGameToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
+            this.restartGameToolStripMenuItem.Size = new System.Drawing.Size(112, 27);
             this.restartGameToolStripMenuItem.Text = "Restart Game";
             this.restartGameToolStripMenuItem.Click += new System.EventHandler(this.restartGameToolStripMenuItem_Click);
             // 
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(77, 23);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(96, 27);
             this.newGameToolStripMenuItem.Text = "New Game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // quitToMenuToolStripMenuItem
             // 
             this.quitToMenuToolStripMenuItem.Name = "quitToMenuToolStripMenuItem";
-            this.quitToMenuToolStripMenuItem.Size = new System.Drawing.Size(90, 23);
+            this.quitToMenuToolStripMenuItem.Size = new System.Drawing.Size(110, 27);
             this.quitToMenuToolStripMenuItem.Text = "Quit to Menu";
             this.quitToMenuToolStripMenuItem.Click += new System.EventHandler(this.quitToMenuToolStripMenuItem_Click);
             // 
@@ -291,18 +299,20 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.Controls.Add(this.pictureBox5);
-            this.panel3.Location = new System.Drawing.Point(10, 4);
+            this.panel3.Location = new System.Drawing.Point(11, 5);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(816, 493);
+            this.panel3.Size = new System.Drawing.Size(933, 657);
             this.panel3.TabIndex = 2;
             this.panel3.Visible = false;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Image = global::SpaceInvaders.Properties.Resources.gameover;
-            this.pictureBox5.Location = new System.Drawing.Point(144, 68);
+            this.pictureBox5.Location = new System.Drawing.Point(165, 91);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(528, 357);
+            this.pictureBox5.Size = new System.Drawing.Size(603, 476);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
@@ -310,41 +320,31 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.pictureBox6);
             this.panel4.Location = new System.Drawing.Point(0, 1);
+            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(816, 493);
+            this.panel4.Size = new System.Drawing.Size(933, 657);
             this.panel4.TabIndex = 3;
             this.panel4.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(305, 291);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(187, 47);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Final Score";
             // 
             // pictureBox6
             // 
             this.pictureBox6.Image = global::SpaceInvaders.Properties.Resources.winnerScreen;
-            this.pictureBox6.Location = new System.Drawing.Point(144, 58);
+            this.pictureBox6.Location = new System.Drawing.Point(165, 77);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(528, 377);
+            this.pictureBox6.Size = new System.Drawing.Size(603, 503);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(816, 524);
+            this.ClientSize = new System.Drawing.Size(933, 699);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -354,6 +354,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Space Invaders";
             this.TransparencyKey = System.Drawing.Color.Lime;
@@ -373,7 +374,6 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -402,7 +402,6 @@
         private ListBox highscores;
         private Panel panel4;
         private PictureBox pictureBox6;
-        private Label label5;
         private ToolStripMenuItem restartGameToolStripMenuItem;
         private ToolStripMenuItem newGameToolStripMenuItem;
         private ToolStripMenuItem quitToMenuToolStripMenuItem;
