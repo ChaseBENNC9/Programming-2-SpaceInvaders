@@ -4,8 +4,9 @@ project-2-space-invaders-ChaseBENNC9 created by GitHub Classroom
 
 ## Bugs:
 
-Sometimes the player missile can miss an enemy and will hit the one above it 
-When a large ammount of missiles and bombs is on screen the player movement is lagged slightly
+1) Sometimes the player missile can miss an enemy and will hit the one above it 
+
+2) When a large ammount of missiles and bombs is on screen the player movement is lagged slightly
 
 
 # Class Diagram
