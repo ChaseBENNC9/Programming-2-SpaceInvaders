@@ -13,7 +13,7 @@ namespace SpaceInvaders
 
         private SoundPlayer missileSound;
         private SoundPlayer bombSound;
-        private SoundPlayer invaderKilled;
+        private SoundPlayer enemyKilled;
         private SoundPlayer destroySound;
         private SoundPlayer winSound;
 
@@ -43,14 +43,14 @@ namespace SpaceInvaders
             bombSound = new SoundPlayer(Properties.Resources.bomb);
             destroySound = new SoundPlayer(Properties.Resources.explosion);
             winSound = new SoundPlayer(Properties.Resources.win);
-            invaderKilled = new SoundPlayer(Properties.Resources.invaderkilled);
+            enemyKilled = new SoundPlayer(Properties.Resources.invaderkilled);
             missiles = new List<Missile>();
             bombs = new List<Bomb>();  
             enemies = new List<Enemy>();
             this.boundary = boundary;
             this.graphics = graphics;
             this.rand = rand;
-            mothership = new Mothership(picturebox, boundary, new Point(boundary.Width / 2, boundary.Height - 150), graphics, missiles, rand, missileSound);
+            mothership = new Mothership(picturebox, boundary, graphics, missiles, rand, missileSound);
             enemiesLeft = 0;
             enemiesRight = 0;
             enemiesBottom = 0;
@@ -146,7 +146,7 @@ namespace SpaceInvaders
                         missile.Destroy();
                         bomb.Destroy();
                         score += 5;
-                        invaderKilled.Play();
+                        enemyKilled.Play();
                     }
                 }
 
@@ -228,7 +228,7 @@ namespace SpaceInvaders
 
 
 
-
+                
 
                 columnFree = true; //Is the next position in the column free?
                 foreach (Enemy enemyPos in enemies.ToList()) //loop through enemies again and test if the column is free, the offset counts 3 forwards
@@ -237,10 +237,8 @@ namespace SpaceInvaders
                         //Tests the next 3 positions in the column if any of them are occupied by another enemy. The columnFree variable is set to false
                     {
                         columnFree = false;
-
-
                     }
-
+  
                 }
                 if (columnFree) //If the column is free. the CanShoot property of the enemy is true.
                 {
@@ -250,7 +248,7 @@ namespace SpaceInvaders
                 enemy.Move();
                 if (enemy.CanShoot)
                 {
-                    if (enemy.ShootNum == 99) //a 1/100 chance of dropping a bomb
+                    if (enemy.ShootChance == 99) //a 1/100 chance of dropping a bomb
                     {
                         enemy.Shoot();
                     }
@@ -264,7 +262,7 @@ namespace SpaceInvaders
                         missile.Destroy();
                         enemy.Destroy();
                         score += 50;
-                        invaderKilled.Play();
+                        enemyKilled.Play();
                     }
 
 

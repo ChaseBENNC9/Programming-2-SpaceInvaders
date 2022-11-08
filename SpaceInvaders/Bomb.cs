@@ -33,11 +33,9 @@ namespace SpaceInvaders
 
         public Point Position { get => position; set => position = value; }
         public Rectangle Collider { get => collider; set => collider = value; }
-        public int Life { get => life; set => life = value; }
 
         public override void Draw()
         {
-            //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, SIZE, SIZE);
             graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
 
         }
@@ -68,7 +66,6 @@ namespace SpaceInvaders
 
         public override void Destroy()
         {
-            //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 
             bombs.Remove(this);
 

@@ -15,18 +15,16 @@ namespace SpaceInvaders
         private Rectangle boundary;
 
         private const int SIZE = 64;
-        private Point position;
         private Graphics graphics;
         private PictureBox picturebox;
         private List<Missile> missiles;
         private SoundPlayer sound;
         private Random rand;
 
-        public Mothership(PictureBox picturebox,Rectangle boundary, Point position,Graphics graphics,List<Missile> missiles,Random rand,SoundPlayer sound)
+        public Mothership(PictureBox picturebox,Rectangle boundary,Graphics graphics,List<Missile> missiles,Random rand,SoundPlayer sound)
         {
             this.picturebox = picturebox;
             this.boundary = boundary;
-            this.position = position;
             this.graphics = graphics;
             this.missiles = missiles;
             this.rand = rand;
@@ -34,10 +32,8 @@ namespace SpaceInvaders
         }
 
         public PictureBox Picturebox { get => picturebox; set => picturebox = value; }
-        public Point Position { get => position; set => position = value; }
-        public PictureBox Picturebox1 { get => picturebox; set => picturebox = value; }
 
-        public void Move(int mouse)
+        public void Move(int mouse) //Moves the mothership to the mouse position , offset so the center of the mothership always lines up with the mouse.
         {
             if(mouse-SIZE/2 > boundary.Left && mouse+SIZE/2 < boundary.Right)
             {
@@ -48,10 +44,11 @@ namespace SpaceInvaders
         }
 
 
-        public void Shoot()
+        public void Shoot() //Create a new missile at the position of the mothership. The offset of -8 is because missile's have a set width of 16 and this forces it to the middle
+        //Plays the missile sound
         {
             
-            missiles.Add(new Missile(new Point(picturebox.Left + SIZE /2 - (8), picturebox.Top), 32, graphics,missiles,rand,Properties.Resources.missile,boundary));
+            missiles.Add(new Missile(new Point(picturebox.Left + SIZE /2 - 8, picturebox.Top), 32, graphics,missiles,rand,Properties.Resources.missile,boundary));
             sound.Play();
         }
 

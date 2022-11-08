@@ -21,7 +21,7 @@ namespace SpaceInvaders
             this.boundary = boundary;
         }
 
-        public abstract void Draw();
+        public abstract void Draw(); 
         public abstract void Move();
         public abstract void Destroy();
     }

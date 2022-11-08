@@ -14,7 +14,7 @@ namespace SpaceInvaders
         private int velocity;
         private const int WIDTH = 16;
         private const int HEIGHT = 32;
-
+        private const int MAXLIFESPAN = 70;
         private List<Missile> missiles;
         private Rectangle collider;
 
@@ -35,19 +35,16 @@ namespace SpaceInvaders
             this.missiles = missiles;
             collider = new Rectangle(position.X, position.Y, WIDTH, HEIGHT);
             this.rand = rand;
-            life = rand.Next(1, 70);
+            life = rand.Next(1, MAXLIFESPAN);
         }
 
-        public Point Position { get => position; set => position = value; }
         public Rectangle Collider { get => collider; set => collider = value; }
-        public int Life { get => life; set => life = value; }
 
-        public override void Draw()
+        public override void Draw() //Draw's the image of the missile
         {
-            //graphics.FillEllipse(Brushes.Orange, position.X, position.Y, 8, 8);
             graphics.DrawImage(image, position.X, position.Y, WIDTH, HEIGHT);
         }
-        public override void Move()
+        public override void Move() //Move the missile while it still has life, when life reaches 0 it is destroyed
         {
             if (life > 0)
             {
@@ -72,9 +69,8 @@ namespace SpaceInvaders
 
         }
 
-        public override void Destroy()
+        public override void Destroy() //Removes the missile from the list and therefore stops drawing to the screen.
         {
-            //graphics.FillEllipse(Brushes.Blue, position.X, position.Y, 8, 8);
 
             missiles.Remove(this);
 

@@ -18,7 +18,7 @@ namespace SpaceInvaders
         private List<Bomb> bombs;
         private List<Enemy> enemies;
         private Random rand;
-        private int shootNum;
+        private int shootChance;
         private bool canShoot;
         private int velocity;
         private int size;
@@ -39,7 +39,7 @@ namespace SpaceInvaders
             this.size = size;
             collider = new Rectangle(position.X, position.Y, size, size);
             canShoot = false;
-            shootNum = 0;
+            shootChance = 0;
             direction = eDirection.LEFT;
 
         }
@@ -49,24 +49,34 @@ namespace SpaceInvaders
         public Rectangle Collider { get => collider; set => collider = value; }
         public bool CanShoot { get => canShoot; set => canShoot = value; }
         public int Velocity { get => velocity; set => velocity = value; }
-        public int ShootNum { get => shootNum; set => shootNum = value; }
+        public int ShootChance { get => shootChance; set => shootChance = value; }
         public eDirection Direction { get => direction; set => direction = value; }
         public int Size { get => size; set => size = value; }
 
         public override void Draw()
         {
-            graphics.DrawImage(image, position.X, position.Y, size, size);
 
+            graphics.DrawImage(image, position.X, position.Y, size, size);
+            if (canShoot)
+            {
+                graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
+
+            }
+            else
+            {
+                graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
+
+            }
 
         }
 
         public override void Move()
         {
-            //
-            shootNum = rand.Next(DROPCHANCE);
+            //The enemies move in a grid formation. Every time the function is called, it generates a new random number between 0 and 100.
+            shootChance = rand.Next(DROPCHANCE);
             collider.X = position.X;
             collider.Y = position.Y;
-            switch (direction)
+            switch (direction) //reads the Enum: direction and changes the enemy direction depending on it's value
             {
                 case eDirection.LEFT:
                     position.X -= velocity;
@@ -79,7 +89,7 @@ namespace SpaceInvaders
         }
 
 
-        public void ShiftLevel()
+        public void ShiftLevel() //When the enemy reaches each side. The grid will drop one level, and increase it's velocity slightly
         {
             position.Y += size/2;
             velocity += SPEEDCHANGE;
@@ -87,10 +97,10 @@ namespace SpaceInvaders
 
         public override void Destroy()
         {
-            enemies.Remove(this);
+            enemies.Remove(this); //When the enemy is destroyed it is removed from the list and will stop being drawn to the screen.
         }
 
-        public void Shoot()
+        public void Shoot() //Create a new bomb at the enemy position and play the sound for a bomb
         {
             bombs.Add(new Bomb(new Point(position.X+size/2,position.Y+size), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
             sound.Play();
