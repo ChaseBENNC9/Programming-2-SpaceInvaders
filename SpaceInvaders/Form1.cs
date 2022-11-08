@@ -10,12 +10,7 @@ namespace SpaceInvaders
         private Graphics graphics;
         private Graphics bufferGraphics;
         private Controller controller;
-        //All of theese will eventually become part of a Fleet Object
-        // private List<Enemy> enemies; //2D array? or keep as a list? new var[4,10] (r,c)
-        // private List<Bomb> bombs; //List
-        //private List<Missile> missiles; //Array
-        /**********************************/
-        //Fleet has different fields for each // 3 constructors?
+
         private Random rand;
         private Rectangle boundary;
         private StreamWriter sw;
@@ -41,16 +36,13 @@ namespace SpaceInvaders
             graphics = CreateGraphics();
             bufferImage = new Bitmap(Width, Height);
             bufferGraphics = Graphics.FromImage(bufferImage);
-            //enemies = new List<Enemy>();
             boundary = ClientRectangle;
             controller = new Controller(pictureBox1, boundary, bufferGraphics, rand);
             gameStarted = false;
             timer1.Enabled = false;
             menuStrip1.Hide();
 
-            //Grid Layout
-            //Picture Box For Player Graphics draw image for ( Missile, Enemies, Bomb) -Enemies in a List and add the missiles to an array or list to limit how many at once.
-
+        
 
 
         }
@@ -60,7 +52,6 @@ namespace SpaceInvaders
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            //MessageBox.Show($"{e.KeyCode}");
             if (e.KeyCode == Keys.Escape && gameStarted)
             {
                 timer1.Enabled = !timer1.Enabled;
@@ -103,7 +94,6 @@ namespace SpaceInvaders
             if (controller.GameOver == true)
             {
                 timer1.Enabled = false;
-                MessageBox.Show("Test");
                 panel3.Show(); //Lose Screen
                 panel3.BringToFront();
                 restartGameToolStripMenuItem.Enabled = false;
