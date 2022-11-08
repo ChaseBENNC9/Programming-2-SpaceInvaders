@@ -10,6 +10,8 @@ namespace SpaceInvaders
     public class Bomb : GameObject
     {
         private const int SIZE = 16;
+        private const int MAXLIFESPAN = 70;
+
         private int velocity;
         private List<Bomb> bombs;
         private Rectangle collider;
@@ -28,7 +30,7 @@ namespace SpaceInvaders
             this.bombs = bombs;
             collider = new Rectangle(position.X, position.Y, SIZE, SIZE);
             this.rand = rand;
-            life = rand.Next(1, 70);
+            life = rand.Next(1, MAXLIFESPAN);
         }
 
         public Point Position { get => position; set => position = value; }
