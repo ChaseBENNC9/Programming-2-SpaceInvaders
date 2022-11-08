@@ -357,7 +357,6 @@
             this.Name = "Form1";
             this.Text = "Space Invaders";
             this.TransparencyKey = System.Drawing.Color.Lime;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);

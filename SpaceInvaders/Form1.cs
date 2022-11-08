@@ -166,14 +166,7 @@ namespace SpaceInvaders
         }
 
 
-
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-         
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //Play button
         {
             backgroundSound.Stop();
             panel1.Hide();
@@ -188,14 +181,14 @@ namespace SpaceInvaders
             gameStarted = true;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //Back button
         {
             panel2.Hide();
         }
 
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //Main Menu Highscore button
         {
             HighScoreMenu();
             panel2.Show();
@@ -234,8 +227,7 @@ namespace SpaceInvaders
 
         private void quitToMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
-            gameStarted = false;
+
             string message = "Are you Sure you want to Quit? \nIf the game is unfinished, the scores for this round \nwill be lost!";
             string caption = "Quit to Menu?";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -245,17 +237,12 @@ namespace SpaceInvaders
                 controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
                 panel1.Show();
                 panel1.BringToFront();
-                //menuStrip1.Hide();
-                //gameStarted = false;
                 menuStrip1.Hide();
+                timer1.Enabled = false;
+                gameStarted = false;
 
             }
-            else
-            {
-                timer1.Enabled = true;
-                //menuStrip1.Hide();
-
-            }
+   
         }
     }
     
