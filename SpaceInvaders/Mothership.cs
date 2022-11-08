@@ -11,7 +11,6 @@ namespace SpaceInvaders
 
     public class Mothership
     {
-        //private Image image;
         private Rectangle boundary;
 
         private const int SIZE = 64;

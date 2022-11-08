@@ -57,16 +57,7 @@ namespace SpaceInvaders
         {
 
             graphics.DrawImage(image, position.X, position.Y, size, size);
-            if (canShoot)
-            {
-                graphics.DrawRectangle(Pens.Green, position.X, position.Y, 48, 48);
 
-            }
-            else
-            {
-                graphics.DrawRectangle(Pens.Red, position.X, position.Y, 48, 48);
-
-            }
 
         }
 
