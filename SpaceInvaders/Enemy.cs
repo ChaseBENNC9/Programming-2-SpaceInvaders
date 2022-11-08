@@ -24,7 +24,7 @@ namespace SpaceInvaders
         private int size;
         private const int DROPCHANCE = 100;
         private const int SPEEDCHANGE = 2;
-        public Enemy(Point position,int size, int velocity, Graphics graphics, Image image, List<Bomb> bombs, Random rand, Rectangle boundary, SoundPlayer sound, List<Enemy> enemies) :
+        public Enemy(Point position, int size, int velocity, Graphics graphics, Image image, List<Bomb> bombs, Random rand, Rectangle boundary, SoundPlayer sound, List<Enemy> enemies) :
             base(position, image, graphics, boundary)
         {
             this.rand = rand;
@@ -44,7 +44,7 @@ namespace SpaceInvaders
 
         }
 
-        
+
         public Point Position { get => position; set => position = value; }
         public Rectangle Collider { get => collider; set => collider = value; }
         public bool CanShoot { get => canShoot; set => canShoot = value; }
@@ -85,13 +85,13 @@ namespace SpaceInvaders
                     position.X += velocity;
                     break;
             }
-            
+
         }
 
 
         public void ShiftLevel() //When the enemy reaches each side. The grid will drop one level, and increase it's velocity slightly
         {
-            position.Y += size/2;
+            position.Y += size / 2;
             velocity += SPEEDCHANGE;
         }
 
@@ -102,7 +102,7 @@ namespace SpaceInvaders
 
         public void Shoot() //Create a new bomb at the enemy position and play the sound for a bomb
         {
-            bombs.Add(new Bomb(new Point(position.X+size/2,position.Y+size), 32, graphics, bombs, rand, Properties.Resources.bomb1,boundary));
+            bombs.Add(new Bomb(new Point(position.X + size / 2, position.Y + size), 32, graphics, bombs, rand, Properties.Resources.bomb1, boundary));
             sound.Play();
         }
     }

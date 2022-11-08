@@ -9,7 +9,7 @@ namespace SpaceInvaders
     public enum eDirection
     {
         RIGHT,
-        LEFT 
-        
+        LEFT
+
     }
 }

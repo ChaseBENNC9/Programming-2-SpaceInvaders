@@ -8,7 +8,7 @@ namespace SpaceInvaders
 {
     //This is the Mothership that the player will control.
     //It follows the cursor on the X-axis and will fire a missile when the mouse is clicked.
-   
+
     public class Mothership
     {
         //private Image image;
@@ -21,7 +21,7 @@ namespace SpaceInvaders
         private SoundPlayer sound;
         private Random rand;
 
-        public Mothership(PictureBox picturebox,Rectangle boundary,Graphics graphics,List<Missile> missiles,Random rand,SoundPlayer sound)
+        public Mothership(PictureBox picturebox, Rectangle boundary, Graphics graphics, List<Missile> missiles, Random rand, SoundPlayer sound)
         {
             this.picturebox = picturebox;
             this.boundary = boundary;
@@ -35,9 +35,9 @@ namespace SpaceInvaders
 
         public void Move(int mouse) //Moves the mothership to the mouse position , offset so the center of the mothership always lines up with the mouse.
         {
-            if(mouse-SIZE/2 > boundary.Left && mouse+SIZE/2 < boundary.Right)
+            if (mouse - SIZE / 2 > boundary.Left && mouse + SIZE / 2 < boundary.Right)
             {
-                picturebox.Left = mouse - SIZE/2;
+                picturebox.Left = mouse - SIZE / 2;
             }
 
 
@@ -47,11 +47,11 @@ namespace SpaceInvaders
         public void Shoot() //Create a new missile at the position of the mothership. The offset of -8 is because missile's have a set width of 16 and this forces it to the middle
         //Plays the missile sound
         {
-            
-            missiles.Add(new Missile(new Point(picturebox.Left + SIZE /2 - 8, picturebox.Top), 32, graphics,missiles,rand,Properties.Resources.missile,boundary));
+
+            missiles.Add(new Missile(new Point(picturebox.Left + SIZE / 2 - 8, picturebox.Top), 32, graphics, missiles, rand, Properties.Resources.missile, boundary));
             sound.Play();
         }
 
-        
+
     }
 }

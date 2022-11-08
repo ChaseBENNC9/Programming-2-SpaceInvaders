@@ -22,11 +22,11 @@ namespace SpaceInvaders
         private List<string> scores;
         private SoundPlayer backgroundSound;
         private bool gameStarted;
-        
+
 
         public Form1()
         {
-            
+
             InitializeComponent();
             backgroundSound = new SoundPlayer(Properties.Resources.theme);
 
@@ -40,10 +40,10 @@ namespace SpaceInvaders
             canShoot = true;
             graphics = CreateGraphics();
             bufferImage = new Bitmap(Width, Height);
-            bufferGraphics = Graphics.FromImage(bufferImage);     
+            bufferGraphics = Graphics.FromImage(bufferImage);
             //enemies = new List<Enemy>();
             boundary = ClientRectangle;
-            controller = new Controller(pictureBox1,boundary, bufferGraphics, rand);
+            controller = new Controller(pictureBox1, boundary, bufferGraphics, rand);
             gameStarted = false;
             timer1.Enabled = false;
             menuStrip1.Hide();
@@ -61,11 +61,11 @@ namespace SpaceInvaders
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //MessageBox.Show($"{e.KeyCode}");
-            if(e.KeyCode == Keys.Escape && gameStarted)
+            if (e.KeyCode == Keys.Escape && gameStarted)
             {
                 timer1.Enabled = !timer1.Enabled;
             }
-            
+
 
 
         }
@@ -85,13 +85,13 @@ namespace SpaceInvaders
         {
 
 
-            if(canShoot && controller.MissileCount() < 15 && timer1.Enabled)
+            if (canShoot && controller.MissileCount() < 15 && timer1.Enabled)
             {
                 controller.FireMissile();
             }
-           
-            
-            
+
+
+
 
         }
         private void timer1_Tick(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace SpaceInvaders
                 SaveScore();
                 gameStarted = false;
             }
-            else if(controller.GameWon == true)
+            else if (controller.GameWon == true)
             {
                 restartGameToolStripMenuItem.Enabled = false;
                 newGameToolStripMenuItem.Enabled = true;
@@ -152,7 +152,7 @@ namespace SpaceInvaders
 
 
 
-             for (int i = 0; i < scores.Count; i++)
+            for (int i = 0; i < scores.Count; i++)
             {
                 if (i < 5)
                 {
@@ -173,7 +173,7 @@ namespace SpaceInvaders
             panel2.Hide();
             panel3.Hide();
             panel4.Hide();
-            
+
             timer1.Enabled = true;
             pictureBox1.Show();
             menuStrip1.Show();
@@ -205,12 +205,12 @@ namespace SpaceInvaders
             DialogResult result = MessageBox.Show(message, caption, buttons);
             if (result == DialogResult.Yes)
             {
-               controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
+                controller = new Controller(pictureBox1, boundary, bufferGraphics, rand); //re-initialising the controller class will restart the game
                 panel3.Hide();
                 panel4.Hide();
             }
             timer1.Enabled = true;
-            
+
         }
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,12 +222,11 @@ namespace SpaceInvaders
             timer1.Enabled = true;
             gameStarted = true;
             restartGameToolStripMenuItem.Enabled = true;
-            //menuStrip1.Hide();
         }
 
         private void quitToMenuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = false;
             string message = "Are you Sure you want to Quit? \nIf the game is unfinished, the scores for this round \nwill be lost!";
             string caption = "Quit to Menu?";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -242,8 +241,12 @@ namespace SpaceInvaders
                 gameStarted = false;
 
             }
-   
+            else
+            {
+                timer1.Enabled = true;
+            }
+
         }
     }
-    
+
 }

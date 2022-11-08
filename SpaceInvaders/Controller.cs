@@ -45,7 +45,7 @@ namespace SpaceInvaders
             winSound = new SoundPlayer(Properties.Resources.win);
             enemyKilled = new SoundPlayer(Properties.Resources.invaderkilled);
             missiles = new List<Missile>();
-            bombs = new List<Bomb>();  
+            bombs = new List<Bomb>();
             enemies = new List<Enemy>();
             this.boundary = boundary;
             this.graphics = graphics;
@@ -56,13 +56,13 @@ namespace SpaceInvaders
             enemiesBottom = 0;
             enemyspeed = 4;
             score = 0;
-        gameOver = false;
-        gameWon = false;
-        columnFree = false;
+            gameOver = false;
+            gameWon = false;
+            columnFree = false;
 
 
 
-        int index = 0;
+            int index = 0;
             //Loop that populates the Enemy List and initialises their x and y position
             for (int x = 100; x < 800; x += OFFSET)
             {
@@ -71,7 +71,7 @@ namespace SpaceInvaders
                     if (index < MAX_ENEMIES)
                     {
 
-                        enemies.Add(new Enemy(new Point(x, y),48, enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand, boundary, bombSound,enemies));
+                        enemies.Add(new Enemy(new Point(x, y), 48, enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand, boundary, bombSound, enemies));
 
                         index++;
                     }
@@ -120,7 +120,7 @@ namespace SpaceInvaders
                 enemiesLeft = enemies[0].Position.X - enemyspeed; //The Leftmost side of the grid is the first Enemy. 
                 //Offset by enemyspeed so the enemies are not drawn offscreen.
                 enemiesRight = enemies[enemies.Count - 1].Position.X + enemies[0].Size + enemyspeed;
-             
+
                 enemiesBottom = enemies[enemies.Count - 1].Position.Y + enemies[enemies.Count - 1].Size; //The bottom of the grid is the last enemy's y position plus the size of the enemy
             }
 
@@ -136,7 +136,7 @@ namespace SpaceInvaders
                     //If the bomb touches the mothership. The game is over and the player has lost the game
                     gameOver = true;
                     destroySound.Play();
-                   
+
                 }
                 foreach (Missile missile in missiles.ToList())
                 {
@@ -228,17 +228,17 @@ namespace SpaceInvaders
 
 
 
-                
+
 
                 columnFree = true; //Is the next position in the column free?
                 foreach (Enemy enemyPos in enemies.ToList()) //loop through enemies again and test if the column is free, the offset counts 3 forwards
                 {
-                    if ((enemyPos.Position.Y == enemy.Position.Y + OFFSET || enemyPos.Position.Y == enemy.Position.Y + 2*OFFSET || enemyPos.Position.Y == enemy.Position.Y + 3*OFFSET) && enemyPos.Position.X == enemy.Position.X)
-                        //Tests the next 3 positions in the column if any of them are occupied by another enemy. The columnFree variable is set to false
+                    if ((enemyPos.Position.Y == enemy.Position.Y + OFFSET || enemyPos.Position.Y == enemy.Position.Y + 2 * OFFSET || enemyPos.Position.Y == enemy.Position.Y + 3 * OFFSET) && enemyPos.Position.X == enemy.Position.X)
+                    //Tests the next 3 positions in the column if any of them are occupied by another enemy. The columnFree variable is set to false
                     {
                         columnFree = false;
                     }
-  
+
                 }
                 if (columnFree) //If the column is free. the CanShoot property of the enemy is true.
                 {

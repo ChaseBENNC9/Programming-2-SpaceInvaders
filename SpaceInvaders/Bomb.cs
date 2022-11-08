@@ -17,8 +17,8 @@ namespace SpaceInvaders
         private Random rand;
 
 
-        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand,Image image,Rectangle boundary) :
-            base(position,image,graphics,boundary)
+        public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand, Image image, Rectangle boundary) :
+            base(position, image, graphics, boundary)
         {
             this.boundary = boundary;
             this.position = position;
