@@ -127,10 +127,6 @@ namespace SpaceInvaders
 
             foreach (Bomb bomb in bombs.ToList())
             {
-                if (bomb.Position.Y > boundary.Height) //When the bomb reaches the bottom of the screen it is destroyed
-                {
-                    bomb.Destroy();
-                }
                 if (bomb.Position.Y >= mothership.Picturebox.Top && bomb.Position.X >= mothership.Picturebox.Left && bomb.Position.X <= mothership.Picturebox.Right)
                 {
                     //If the bomb touches the mothership. The game is over and the player has lost the game
@@ -153,25 +149,13 @@ namespace SpaceInvaders
             }
 
 
-
-
-
-
-
-            if (enemies.Count == 0)
-            {
-                winSound.Play(); //WINNING SCENARIO
-                GameWon = true;
-
-                //if the enemies count reaches 0. The player has Won the game.
-
-            }
-            else if (enemiesBottom >= /*boundary.Bottom*/mothership.Picturebox.Top) //or bottom of form.
+            if (enemiesBottom >= mothership.Picturebox.Top)
             {
                 //If the bottom of the enemy grid is the same as the top of the mothership. The player loses the game.
                 gameOver = true;
                 destroySound.Play();
             }
+
             //When the enemy list reaches a certain size. The enemyspeed is set to different speeds.
             if (enemies.Count <= 40 && enemies.Count > 30)
             {
@@ -179,8 +163,6 @@ namespace SpaceInvaders
             }
             else if (enemies.Count <= 30 && enemies.Count > 20)
             {
-
-
                 enemyspeed = 8;
             }
             else if (enemies.Count <= 20 && enemies.Count > 10)
@@ -199,8 +181,13 @@ namespace SpaceInvaders
             {
                 enemyspeed = 20;
             }
+            else if (enemies.Count == 0)
+            {
+                winSound.Play(); //WINNING SCENARIO
+                GameWon = true;
+                //if the enemies count reaches 0. The player has Won the game.
 
-
+            }
             //If the enemy grid reaches either side of the screen. The direction of the grid changes
             //and the enemy grid drops one level.
             if (enemiesRight > boundary.Right || enemiesLeft < boundary.Left)
@@ -208,13 +195,17 @@ namespace SpaceInvaders
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.ShiftLevel();
-                    if (enemy.Direction == eDirection.LEFT)
+
+                    switch (enemy.Direction)
                     {
-                        enemy.Direction = eDirection.RIGHT;
-                    }
-                    else
-                    {
-                        enemy.Direction = eDirection.LEFT;
+                        case eDirection.LEFT:
+                            enemy.Direction = eDirection.RIGHT;
+
+                            break;
+                        case eDirection.RIGHT:
+                            enemy.Direction = eDirection.LEFT;
+                            break;
+
                     }
 
                 }
@@ -226,20 +217,9 @@ namespace SpaceInvaders
 
                 enemy.Draw();
 
-
-
-
-
                 columnFree = true; //Is the next position in the column free?
-                foreach (Enemy enemyPos in enemies.ToList()) //loop through enemies again and test if the column is free, the offset counts 3 forwards
-                {
-                    if ((enemyPos.Position.Y == enemy.Position.Y + OFFSET || enemyPos.Position.Y == enemy.Position.Y + 2 * OFFSET || enemyPos.Position.Y == enemy.Position.Y + 3 * OFFSET) && enemyPos.Position.X == enemy.Position.X)
-                    //Tests the next 3 positions in the column if any of them are occupied by another enemy. The columnFree variable is set to false
-                    {
-                        columnFree = false;
-                    }
 
-                }
+                CheckColumn(enemy.Position.X, enemy.Position.Y);
                 if (columnFree) //If the column is free. the CanShoot property of the enemy is true.
                 {
                     enemy.CanShoot = true;
@@ -264,23 +244,26 @@ namespace SpaceInvaders
                         score += 50;
                         enemyKilled.Play();
                     }
-
-
-
                 }
             }
         }
 
-
         public void MovePlayer(int x) //Moves the player to a given x position - The Mouse X position
         {
-            //set the variable to be x
-            mothership.Move(x); //mothership.Move()
+            mothership.Move(x);
         }
 
+        public void CheckColumn(int x, int y) //Loops through each enemy and checks against the provided x and y values.
+        {
+            foreach (Enemy enemy in enemies.ToList())
+            {
+                if ((enemy.Position.Y == y + OFFSET || enemy.Position.Y == y + 2 * OFFSET || enemy.Position.Y == y + 3 * OFFSET) && enemy.Position.X == x)
+                //Tests the next 3 Y positions in the column and the x position of each enemy, if any of them are occupied by another enemy. The columnFree variable is set to false
+                {
+                    columnFree = false;
+                }
 
-
-
-
+            }
+        }
     }
 }

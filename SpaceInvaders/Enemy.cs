@@ -55,10 +55,7 @@ namespace SpaceInvaders
 
         public override void Draw()
         {
-
             graphics.DrawImage(image, position.X, position.Y, size, size);
-
-
         }
 
         public override void Move()
