@@ -93,23 +93,17 @@ namespace SpaceInvaders
             controller.DrawObjects();
             if (controller.GameOver == true)
             {
-                timer1.Enabled = false;
+                FinishGame();
                 panel3.Show(); //Lose Screen
                 panel3.BringToFront();
-                restartGameToolStripMenuItem.Enabled = false;
-                newGameToolStripMenuItem.Enabled = true;
-                SaveScore();
-                gameStarted = false;
+
             }
             else if (controller.GameWon == true)
             {
-                restartGameToolStripMenuItem.Enabled = false;
-                newGameToolStripMenuItem.Enabled = true;
-                timer1.Enabled = false;
+                FinishGame();
                 panel4.Show(); //Win Screen                               
                 panel4.BringToFront();
-                SaveScore();
-                gameStarted = false;
+
             }
 
 
@@ -117,6 +111,15 @@ namespace SpaceInvaders
 
             graphics.DrawImage(bufferImage, 0, 0);
 
+        }
+
+        private void FinishGame()
+        {
+            restartGameToolStripMenuItem.Enabled = false;
+            newGameToolStripMenuItem.Enabled = true;
+            timer1.Enabled = false;
+            SaveScore();
+            gameStarted = false;
         }
         private void SaveScore()
         {
