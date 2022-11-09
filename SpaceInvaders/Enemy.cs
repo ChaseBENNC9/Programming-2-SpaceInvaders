@@ -55,10 +55,10 @@ namespace SpaceInvaders
 
         public override void Draw()
         {
-            graphics.DrawImage(image, position.X, position.Y, size, size);
+            graphics.DrawImage(image, position.X, position.Y, size, size); //draws the image of the enemy
         }
 
-        public override void Move()
+        public override void Move() //Moves the enemy at a constant speed - either left or right
         {
             //The enemies move in a grid formation. Every time the function is called, it generates a new random number between 0 and 100.
             shootChance = rand.Next(DROPCHANCE);
@@ -83,9 +83,9 @@ namespace SpaceInvaders
             velocity += SPEEDCHANGE;
         }
 
-        public override void Destroy()
+        public override void Destroy() //When the enemy is destroyed it is removed from the list and will stop being drawn to the screen.
         {
-            enemies.Remove(this); //When the enemy is destroyed it is removed from the list and will stop being drawn to the screen.
+            enemies.Remove(this); 
         }
 
         public void Shoot() //Create a new bomb at the enemy position and play the sound for a bomb

@@ -1,10 +1,12 @@
-﻿using System;
+﻿//This is the bomb, it has a similar behaviour to the missile except it moves downwards from an enemies position and does not have a set limit. After a random ammount of ticks
+//Or after a collision with the player it will be destroyed
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//This is the bomb, it has a similar behaviour to the missile except it moves downwards from an enemies position and does not have a set limit. After a random ammount of ticks
-//Or after a collision with the player it will be destroyed
+
 namespace SpaceInvaders
 {
     public class Bomb : GameObject
@@ -36,12 +38,12 @@ namespace SpaceInvaders
         public Point Position { get => position; set => position = value; }
         public Rectangle Collider { get => collider; set => collider = value; }
 
-        public override void Draw()
+        public override void Draw() //Draw the image of the missile
         {
             graphics.DrawImage(image, position.X, position.Y, SIZE, SIZE);
 
         }
-        public override void Move()
+        public override void Move() //Moves the bomb downwards at a constant speed until it reaches the bottom of the screen.
         {
             if (life > 0)
             {
@@ -66,7 +68,7 @@ namespace SpaceInvaders
 
         }
 
-        public override void Destroy()
+        public override void Destroy() //Destroys the bomb by removing it from it's list.
         {
 
             bombs.Remove(this);

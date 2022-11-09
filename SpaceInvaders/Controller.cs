@@ -28,7 +28,7 @@ namespace SpaceInvaders
         private bool columnFree;
         private int score;
         private const int OFFSET = 50;
-        private const int MAX_ENEMIES = 40;
+        private const int MAXENEMIES = 40;
         private List<Enemy> enemies;
 
         private int enemiesLeft, enemiesRight, enemiesBottom, enemyspeed;
@@ -68,7 +68,7 @@ namespace SpaceInvaders
             {
                 for (int y = 10; y < 200; y += OFFSET)
                 {
-                    if (index < MAX_ENEMIES)
+                    if (index < MAXENEMIES)
                     {
 
                         enemies.Add(new Enemy(new Point(x, y), 48, enemyspeed, graphics, Properties.Resources.enemy_ship, bombs, rand, boundary, bombSound, enemies));
