@@ -28,10 +28,7 @@ namespace SpaceInvaders
             base(position, image, graphics, boundary)
 
         {
-            this.position = position;
             this.velocity = velocity;
-            this.graphics = graphics;
-            this.boundary = boundary;
             this.missiles = missiles;
             collider = new Rectangle(position.X, position.Y, WIDTH, HEIGHT);
             this.rand = rand;

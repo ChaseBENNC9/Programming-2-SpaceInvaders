@@ -24,11 +24,7 @@ namespace SpaceInvaders
         public Bomb(Point position, int velocity, Graphics graphics, List<Bomb> bombs, Random rand, Image image, Rectangle boundary) :
             base(position, image, graphics, boundary)
         {
-            this.boundary = boundary;
-            this.position = position;
             this.velocity = velocity;
-            this.graphics = graphics;
-            this.image = image;
             this.bombs = bombs;
             collider = new Rectangle(position.X, position.Y, SIZE, SIZE);
             this.rand = rand;

@@ -28,12 +28,8 @@ namespace SpaceInvaders
             base(position, image, graphics, boundary)
         {
             this.rand = rand;
-            this.boundary = boundary;
-            this.position = position;
-            this.graphics = graphics;
             this.sound = sound;
             this.velocity = velocity;
-            this.image = image;
             this.bombs = bombs;
             this.enemies = enemies;
             this.size = size;
