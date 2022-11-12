@@ -23,14 +23,17 @@ namespace SpaceInvaders
         private Mothership mothership;
         private List<Missile> missiles;
         private List<Bomb> bombs;
+        private List<Enemy> enemies;
         private bool gameOver;
         private bool gameWon;
         private bool columnFree;
         private int score;
         private const int OFFSET = 50;
         private const int MAXENEMIES = 40;
-        private List<Enemy> enemies;
-
+        private const int BOMBPOINTS = 5;
+        private const int ENEMYPOINTS = 50;
+        private const int ROWSIZE = 10;
+        
         private int enemiesLeft, enemiesRight, enemiesBottom, enemyspeed;
 
         public bool GameOver { get => gameOver; set => gameOver = value; }
@@ -141,7 +144,7 @@ namespace SpaceInvaders
                         //If a bomb and a missile collide with eachother. Both are destroyed and the score is increased by 5.
                         missile.Destroy();
                         bomb.Destroy();
-                        score += 5;
+                        score += BOMBPOINTS;
                         enemyKilled.Play();
                     }
                 }
@@ -157,23 +160,23 @@ namespace SpaceInvaders
             }
 
             //When the enemy list reaches a certain size. The enemyspeed is set to different speeds.
-            if (enemies.Count <= 40 && enemies.Count > 30)
+            if (enemies.Count <= MAXENEMIES && enemies.Count > MAXENEMIES-ROWSIZE)
             {
                 enemyspeed = 4;
             }
-            else if (enemies.Count <= 30 && enemies.Count > 20)
+            else if (enemies.Count <= MAXENEMIES - ROWSIZE && enemies.Count > MAXENEMIES - (2*ROWSIZE))
             {
                 enemyspeed = 8;
             }
-            else if (enemies.Count <= 20 && enemies.Count > 10)
+            else if (enemies.Count <= MAXENEMIES - (2 * ROWSIZE) && enemies.Count > MAXENEMIES - (3 * ROWSIZE))
             {
                 enemyspeed = 10;
             }
-            else if (enemies.Count <= 10 && enemies.Count > 5)
+            else if (enemies.Count <= MAXENEMIES - (3 * ROWSIZE) && enemies.Count > ROWSIZE/2)
             {
                 enemyspeed = 12;
             }
-            else if (enemies.Count <= 5 && enemies.Count > 1)
+            else if (enemies.Count <= ROWSIZE/2 && enemies.Count > 1)
             {
                 enemyspeed = 15;
             }
@@ -200,7 +203,6 @@ namespace SpaceInvaders
                     {
                         case eDirection.LEFT:
                             enemy.Direction = eDirection.RIGHT;
-
                             break;
                         case eDirection.RIGHT:
                             enemy.Direction = eDirection.LEFT;
@@ -241,7 +243,7 @@ namespace SpaceInvaders
                         //if a missile hits an enemy. Both are destroyed and the score is increased by 50.
                         missile.Destroy();
                         enemy.Destroy();
-                        score += 50;
+                        score += ENEMYPOINTS;
                         enemyKilled.Play();
                     }
                 }
